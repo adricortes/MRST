@@ -1,0 +1,874 @@
+\documentclass[preprint,11pt]{elsarticle}
+
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\graphicspath{{figs/}}
+
+\journal{---}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{Black-oil simulation of geologic CO$_2$ sequestration in MRST:
+theory, verification practice, and a GNU Octave reproduction study}
+
+\author[1]{Adriano Cortes}
+\address[1]{---}
+
+\begin{abstract}
+This report documents the theory and the computational practice behind a
+full reproduction of the geologic carbon storage (GCS) examples of
+Sal\'o-Salgado et al. (2024), performed with the MATLAB Reservoir
+Simulation Toolbox (MRST) under GNU Octave. We review the black-oil
+formulation used to model CO$_2$--brine systems, the generation of PVT
+input data from a thermodynamic mixing model, the Killough--Land model for
+relative permeability hysteresis, and a Fickian model for molecular
+diffusion of dissolved CO$_2$. Each model is exercised on the published
+example decks: a PVT table verification, the PUNQ-S3 hysteresis validation
+over 500 years, and a FluidFlower-inspired convective mixing problem at
+two grid resolutions. We further include a spill-point structural trapping
+analysis from the \texttt{co2lab} module. All results reproduce the
+published behavior: the fluid object matches the tabulated PVT data to
+machine precision; hysteresis immobilizes the CO$_2$ plume by residual
+trapping and suppresses the mobile gas cap; and grid-level numerical
+diffusion masks physical diffusion at coarse resolution, as predicted by a
+simple scaling argument. We close with a portability study that documents
+the code-level differences between MATLAB and Octave, including a silent
+grid-corruption defect traced to a malformed block comment, and we discuss
+its implications for reproducibility of simulation software. An appendix
+further audits MRST's well-reservoir coupling on the diffusion case's
+unstructured mesh: we show it approximates the well cell as an
+axis-aligned Cartesian block rather than using its true PEBI geometry, and
+quantify the resulting gap against a grid-aware alternative well index.
+The full reproduction is also released as four executable Jupyter
+notebooks, one per case, reusing MRST's Octave kernel.
+\end{abstract}
+
+\begin{keyword}
+geologic carbon storage \sep black-oil model \sep MRST \sep relative
+permeability hysteresis \sep molecular diffusion \sep reproducibility
+\end{keyword}
+
+\end{frontmatter}
+
+\section{Introduction}
+\label{sec:intro}
+
+Geologic carbon storage (GCS) injects supercritical CO$_2$ into deep
+saline aquifers. Four mechanisms retain the injected CO$_2$: structural
+and stratigraphic trapping under low-permeability seals, residual
+trapping as disconnected ganglia after imbibition, solubility trapping by
+dissolution into brine, and mineral trapping over long times
+\cite{benson2005}. Numerical simulation is the primary tool to assess
+these mechanisms at field scale. The MATLAB Reservoir Simulation Toolbox
+(MRST) \cite{lie2019,lie-moyner2021} provides an open-source platform for
+such simulations, with full access to the discretization, the nonlinear
+solvers, and the automatic differentiation (AD) backends.
+
+Sal\'o-Salgado et al.~\cite{salo2024} extended the \texttt{ad-blackoil}
+module of MRST with three capabilities that increase the fidelity of
+black-oil GCS models: (i) generation of CO$_2$--brine PVT input data from
+a thermodynamic mixing model; (ii) relative permeability hysteresis of
+the nonwetting phase, which controls residual trapping; and (iii)
+molecular diffusion of dissolved CO$_2$. This report reviews the theory
+of each extension, describes how MRST implements it, and documents a
+complete reproduction of the published examples. All runs used GNU
+Octave~8.4 instead of MATLAB, on the MRST development sources and the
+example decks published with the paper. The reproduction therefore also
+serves as a portability and reproducibility study
+(Section~\ref{sec:practice}).
+
+Section~\ref{sec:model} states the governing equations and the
+discretization. Section~\ref{sec:trapping} presents the spill-point
+analysis of structural trapping. Sections~\ref{sec:pvt}--\ref{sec:diff}
+cover the three extensions and their verification cases.
+Section~\ref{sec:practice} reports computational aspects and the
+portability findings. Section~\ref{sec:conclusions} concludes.
+Appendix~\ref{app:wellindex} audits the well-index model of
+Section~\ref{sec:diff} against a grid-aware alternative for unstructured
+meshes.
+
+\section{Governing equations and discretization}
+\label{sec:model}
+
+\subsection{Black-oil formulation for CO$_2$--brine systems}
+
+The black-oil model describes a multiphase system with pseudo-components
+whose mutual solubility depends on pressure only. For GCS in saline
+aquifers, the oleic phase is assigned brine properties, so that the
+gaseous (CO$_2$-rich) pseudo-component can dissolve in it
+\cite{hassanzadeh2008,salo2024}. With subscripts $o$ (aqueous/oleic) and
+$g$ (gaseous), mass conservation of the two pseudo-components reads
+\begin{align}
+\frac{\partial}{\partial t}\Big[\phi\big(b_o S_o + R_v b_g S_g\big)\Big]
+ + \nabla\cdot\big(b_o \mathbf{u}_o + R_v b_g \mathbf{u}_g\big) &= q_o,
+\label{eq:bo-oleic}\\
+\frac{\partial}{\partial t}\Big[\phi\big(b_g S_g + R_s b_o S_o\big)\Big]
+ + \nabla\cdot\big(b_g \mathbf{u}_g + R_s b_o \mathbf{u}_o\big) &= q_g,
+\label{eq:bo-gas}
+\end{align}
+where $\phi$ is porosity, $S_\alpha$ saturation,
+$b_\alpha = 1/B_\alpha$ the reciprocal formation volume factor, $R_s$ the
+solution gas--oil ratio (dissolved CO$_2$ in brine), $R_v$ the vaporized
+oil--gas ratio (H$_2$O in the CO$_2$-rich phase), and $q_\alpha$ source
+terms. The phase fluxes follow the multiphase extension of Darcy's law,
+\begin{equation}
+\mathbf{u}_\alpha = -\frac{\mathbf{k}\, k_{r\alpha}(S_\alpha)}
+{\mu_\alpha}\big(\nabla p_\alpha - \rho_\alpha \mathbf{g}\big),
+\label{eq:darcy}
+\end{equation}
+with intrinsic permeability $\mathbf{k}$, relative permeability
+$k_{r\alpha}$, viscosity $\mu_\alpha$, and phase pressures related by the
+capillary pressure $p_g - p_o = P_c(S_g)$. The saturations close the
+system through $S_o + S_g = 1$. Reservoir-condition phase densities
+follow from the surface densities $\rho_\alpha^s$:
+\begin{equation}
+\rho_o = b_o\big(\rho_o^s + R_s\,\rho_g^s\big), \qquad
+\rho_g = b_g\big(\rho_g^s + R_v\,\rho_o^s\big).
+\label{eq:densities}
+\end{equation}
+
+\subsection{Discretization and solvers in MRST}
+
+MRST discretizes \eqref{eq:bo-oleic}--\eqref{eq:darcy} with a
+cell-centered finite-volume method: two-point flux approximation (TPFA)
+for the pressure gradient, single-point upstream mobility weighting, and
+backward Euler in time \cite{lie2019}. For a face $ij$ between cells $i$
+and $j$, the discrete phase flux is
+\begin{equation}
+v_{\alpha,ij} = \lambda_{\alpha}^{\mathrm{up}}\, T_{ij}
+\big(p_{\alpha,i} - p_{\alpha,j} - \rho_{\alpha,ij}\, g\, \Delta z_{ij}\big),
+\qquad
+T_{ij} = \Big(T_{i,ij}^{-1} + T_{j,ij}^{-1}\Big)^{-1},
+\label{eq:tpfa}
+\end{equation}
+where $T_{i,ij}$ are half-face transmissibilities built from the cell
+permeability and geometry, and
+$\lambda_\alpha^{\mathrm{up}} = (k_{r\alpha}/\mu_\alpha)^{\mathrm{up}}$
+is evaluated in the upstream cell. The fully implicit residual system is
+linearized by Newton's method. MRST assembles the Jacobians by automatic
+differentiation and organizes secondary variables (densities, mobilities,
+relative permeabilities, component fluxes) as \emph{state functions}
+attached to the model \cite{lie-moyner2021}. This design is what allows
+the hysteresis and diffusion extensions of
+Sections~\ref{sec:hyst}--\ref{sec:diff} to replace one state function
+each, without changes to the assembly loop.
+
+In this work all systems were solved with a sparse direct solver
+(\texttt{BackslashSolverAD}), a Newton line search, and an
+iteration-targeting time-step controller. The Octave environment provides
+no compiled (MEX) acceleration; Section~\ref{sec:practice} quantifies the
+consequences.
+
+\section{Structural trapping: spill-point analysis}
+\label{sec:trapping}
+
+Before dynamic simulation, geometric analysis of the caprock surface
+already quantifies the structural trapping potential. The
+\texttt{co2lab} module builds a top-surface grid $\Gamma$ from the 3D
+grid and analyzes its depth function $z(\mathbf{x})$
+\cite{nilsen2015}. A \emph{trap} is the interior of a closed depth
+contour around a local minimum of $z$ (a dome apex); its \emph{spill
+point} is the saddle where CO$_2$ overflows to the next trap. The traps
+and the connecting \emph{spill paths} form a directed tree that predicts
+the long-term migration of buoyant CO$_2$ without solving any flow
+equation.
+
+We exercised this analysis on the introductory example of
+\texttt{co2lab-spillpoint}: a synthetic $10\times5$~km, 50~m thick
+sandbox at 1~km depth, with a dipping, sinusoidally perturbed top
+surface (100$\times$100 top-surface cells, porosity 0.25). The
+edge-based algorithm of \texttt{trapAnalysis} identified 13 traps with a
+total capacity of \SI{5.099e6}{m^3}, which is 40.8\% of the total pore
+volume (\SI{1.25e7}{m^3}); the five largest traps hold 55.2\% of that
+capacity. Figure~\ref{fig:traps} shows the depth map with the trap cells
+and the trap--spill-path network.
+
+\begin{figure}[tb]
+\centering
+\includegraphics[width=0.495\textwidth]{fig1_depth_and_traps}
+\includegraphics[width=0.495\textwidth]{fig2_traps_and_spillpaths}
+\caption{Spill-point analysis of the synthetic sandbox aquifer.
+Left: top-surface depth (m); white dots mark cells inside structural
+traps. Right: the 13 numbered traps (red), the spill paths connecting
+them (green), and the remaining cells (blue). CO$_2$ that leaks from a
+trap migrates along the spill path to the next trap up-dip.}
+\label{fig:traps}
+\end{figure}
+
+\section{PVT data generation for CO$_2$--brine black-oil models}
+\label{sec:pvt}
+
+\subsection{Thermodynamic model}
+
+Black-oil simulators consume tabulated PVT data. For CO$_2$--brine
+systems, the tables must encode the mutual solubility of CO$_2$ and
+H$_2$O and the resulting density and viscosity changes. The
+implementation of \cite{salo2024} follows Hassanzadeh et
+al.~\cite{hassanzadeh2008}: phase compositions come from the
+fugacity--activity equilibrium model of Spycher et
+al.~\cite{spycher2003,spycher2005} combined with the activity
+coefficients of Duan and Sun~\cite{duan2003}, which admits NaCl, KCl,
+CaCl$_2$, and seawater brines; the model is valid to approximately
+\SI{100}{\celsius} and \SI{600}{bar}. Gas-phase molar volumes follow the
+Redlich--Kwong equation of state \cite{redlich1949}. Brine density
+follows Rowe and Chou \cite{rowe1970}, extended in $p$--$T$ range by
+Batzle and Wang \cite{batzle1992}, with the density increase due to
+dissolved CO$_2$ from Garcia's apparent molar volume correlation
+\cite{garcia2001}. Viscosities use Islam and Carlson \cite{islam2012}
+for the aqueous phase and Fenghour et al.~\cite{fenghour1998} for
+CO$_2$, with Davidson's mixing rule \cite{davidson1993} when the gas
+phase contains vaporized H$_2$O.
+
+The black-oil quantities follow from the equilibrium compositions. The
+solution gas--oil ratio $R_s$ is the volume of dissolved CO$_2$,
+measured at surface conditions, per surface volume of brine, and $B_o$
+is the ratio of the reservoir-condition aqueous volume to its surface
+volume. If vaporized water is included, the gas-phase analogues read
+\cite{salo2024}
+\begin{equation}
+R_v \;=\; \frac{V^s_{v\mathrm{H_2O}}}{V^s_{\mathrm{CO_2}}}
+      \;=\; \frac{y_{\mathrm{H_2O}}\,\bar\rho^{\,s}_{\mathrm{CO_2}}}
+                 {\bar\rho^{\,s}_{\mathrm{H_2O}}\, y_{\mathrm{CO_2}}},
+\qquad
+B_g \;=\; \frac{V^r_{\mathrm{g}}}{V^s_{\mathrm{CO_2}}}
+      \;=\; \frac{\bar\rho^{\,s}_{\mathrm{CO_2}}}
+                 {\bar\rho^{\,r}_{\mathrm{g}}\,(1 - v_{\mathrm{H_2O}})},
+\label{eq:rvbg}
+\end{equation}
+where $y$ and $v$ are mole and mass fractions in the gaseous phase and
+$\bar\rho$ denotes molar density. The function
+\texttt{pvtBrineWithCO2BlackOil} evaluates this chain over a requested
+$p$--$T$--salinity range and writes ECLIPSE-format \texttt{PVTO} (live
+oil, i.e., brine with dissolved CO$_2$) and \texttt{PVDG} (dry gas)
+tables.
+
+\subsection{Verification}
+
+The published deck \texttt{example\_co2brine\_3reg\_unsatVals.DATA}
+embeds tables generated at $T=\SI{80}{\celsius}$, salinity $10^5$~ppm,
+and $p \in [1,600]$~bar. Reading this deck with
+\texttt{initDeckADIFluid} produces the MRST fluid object; evaluating its
+$b_g$, $\mu_g$, $R_s^{\mathrm{sat}}$, $b_o$, $\mu_o$ functions and
+reconstructing densities through \eqref{eq:densities} must return the
+tabulated values. Figure~\ref{fig:pvt} shows the comparison; the maximum
+relative difference over all four quantities is $2.2\times 10^{-16}$,
+i.e., machine precision, which verifies the deck round-trip
+(table $\rightarrow$ deck $\rightarrow$ interpolated fluid object). The
+curves also show the physics of interest for GCS: the supercritical
+density transition of CO$_2$ (\num{223}, \num{734}, and
+\SI{933}{kg/m^3} at 100, 300, and 600~bar) and the density increase of
+brine upon CO$_2$ dissolution, which drives the convective mixing of
+Section~\ref{sec:diff}.
+
+\begin{figure}[tb]
+\centering
+\includegraphics[width=\textwidth]{fig_pvt_props}
+\caption{Verification of the PVT deck round-trip at
+$T=\SI{80}{\celsius}$, $S=10^5$~ppm. Thick lines: MRST fluid object;
+thin lines: tabulated output of \texttt{pvtBrineWithCO2BlackOil}. From
+left to right: CO$_2$ density, CO$_2$ viscosity (log scale), brine
+density without and with dissolved CO$_2$, brine viscosity. The curves
+coincide to machine precision; compare with Fig.~2 of \cite{salo2024}.}
+\label{fig:pvt}
+\end{figure}
+
+\section{Relative permeability hysteresis}
+\label{sec:hyst}
+
+\subsection{Killough's model with Land trapping}
+
+Relative permeability depends on the saturation path, not only on the
+current saturation: pore-scale contact-angle hysteresis and nonwetting
+phase disconnection make the imbibition curve differ from the drainage
+curve \cite{juanes2006}. In GCS, CO$_2$ is the nonwetting phase in most
+aquifers; during post-injection migration, brine re-imbibes at the
+trailing edge of the plume, disconnects CO$_2$ ganglia, and immobilizes
+them (residual trapping). A drainage-only model misses this mechanism
+and overpredicts the mobile gas cap.
+
+Killough's model \cite{killough1976} computes the scanning curve between
+the primary drainage curve $k^d_{rg}$ and the bounding imbibition curve
+$k^{ib}_{rg}$. While the current saturation $S_g$ lies below the
+historical maximum $S_{gi}$, the scanning relative permeability is
+\begin{equation}
+k^{i}_{rg}(S_g) = k^{ib}_{rg}(S_g^*)\,
+\frac{k^{d}_{rg}(S_{gi})}{k^{d}_{rg}(S_{g,\max})},
+\qquad
+S_g^* = S_{gt,\max} + \frac{(S_g - S_{gt})(S_{g,\max} -
+S_{gt,\max})}{S_{gi} - S_{gt}},
+\label{eq:killough}
+\end{equation}
+where $S_{g,\max}$ is the maximum attainable gas saturation and
+$S_{gt,\max}$ the corresponding maximum trapped saturation. The trapped
+gas saturation for the current cycle follows Land's model
+\cite{land1968},
+\begin{equation}
+S_{gt} = S_{g,\min} + \frac{S_{gi} - S_{g,\min}}
+{1 + C\,(S_{gi} - S_{g,\min})},
+\qquad
+C = \frac{1}{S_{gt,\max} - S_{g,\min}} - \frac{1}{S_{g,\max} -
+S_{g,\min}},
+\label{eq:land}
+\end{equation}
+with $S_{g,\min}=0$ on primary drainage. For numerical robustness the
+implementation replaces the denominator $1 + C(S_{gi}-S_{g,\min})$ by
+$A + C(S_{gi}-S_{g,\min})$ with $A = 1 + a(S_{g,\max}-S_{gi})$ and
+default $a=0.1$, as ECLIPSE does \cite{salo2024}. MRST reads the
+hysteresis options from the \texttt{EHYSTR} keyword and the imbibition
+saturation tables from the deck, and evaluates \eqref{eq:killough} inside
+a dedicated state function, \texttt{HystereticRelativePermeability},
+that replaces the default relative permeability of the validated model.
+Figure~\ref{fig:kr} shows the three curves for the PUNQ-S3 rock (Berea
+sandstone data of Oak, used by \cite{juanes2006}), computed from the
+published deck.
+
+\begin{figure}[tb]
+\centering
+\includegraphics[width=0.55\textwidth]{fig_kr_hysteresis}
+\caption{Hysteretic gas relative permeability of the PUNQ-S3 deck:
+primary drainage curve, bounding imbibition curve, and the Killough
+scanning curve for a flow reversal at $S_{gi}=0.4$. The scanning curve
+reaches zero at the Land trapped saturation
+$S_{gt}(S_{gi})\approx 0.29$. Compare with Fig.~3 of \cite{salo2024}.}
+\label{fig:kr}
+\end{figure}
+
+\subsection{Validation on the PUNQ-S3 model}
+
+Juanes et al.~\cite{juanes2006} adapted the PUNQ-S3 geologic model into a
+GCS benchmark: a $19\times28\times5$ corner-point grid (1{,}761 active
+cells) of an anticline aquifer with heterogeneous permeability
+(0.5--1000~mD), eight injectors at \SI{18}{rm^3/day} each for 10 years,
+500 years of total simulation, immiscible water--gas physics, and pore
+volumes multiplied by $10^3$ on the boundary ring to mimic an open
+aquifer. We reproduced both published cases from the same deck
+(\texttt{CASE2.DATA}): Case~1 deactivates hysteresis; Case~2 activates
+Killough hysteresis in the gas phase.
+
+Figure~\ref{fig:punq-maps} shows the CO$_2$ saturation in all five
+layers at $t=500$~y, and Fig.~\ref{fig:punq-evol} the plume metrics in
+time. The two cases coincide until injection stops at $t=10$~y, because
+hysteresis only acts on saturation reversals. Afterwards they diverge:
+without hysteresis the plume migrates up-dip, drains the invaded region,
+and collects into a compact, high-saturation gas cap (49 cells with
+$S_g>0.05$, mean plume saturation 0.505 at 500~y); with hysteresis the
+trailing edge traps CO$_2$ residually along the migration path, the
+invaded area freezes at its maximum extent (138 cells), and the mean
+plume saturation drops to 0.192. Table~\ref{tab:punq} summarizes the
+metrics. This is precisely the behavior reported in Fig.~4 of
+\cite{salo2024} and in \cite{juanes2006}, where the same contrast was
+validated against ECLIPSE~100.
+
+\begin{figure}[tb]
+\centering
+\includegraphics[width=\textwidth]{fig_punq_sg500y}
+\caption{PUNQ-S3: CO$_2$ saturation per layer (left to right: layers
+1--5, top of the formation to its base) at $t=500$~y. Top row: no
+hysteresis; bottom row: Killough hysteresis. Gray marks inactive cells.
+Hysteresis suppresses the compact gas cap and leaves a broad,
+low-saturation, residually trapped plume. Compare with Fig.~4 of
+\cite{salo2024}.}
+\label{fig:punq-maps}
+\end{figure}
+
+\begin{figure}[tb]
+\centering
+\includegraphics[width=\textwidth]{fig_punq_evolution}
+\caption{PUNQ-S3 plume evolution. Left: number of cells with
+$S_g>0.05$; right: maximum gas saturation. The curves coincide during
+injection ($t\le 10$~y) and diverge after flow reversal, when the
+hysteretic scanning curves activate.}
+\label{fig:punq-evol}
+\end{figure}
+
+\begin{table}[tb]
+\centering
+\caption{PUNQ-S3 plume metrics at $t=500$~y.}
+\label{tab:punq}
+\begin{tabular}{lcc}
+\toprule
+Metric & No hysteresis & Hysteresis \\
+\midrule
+Maximum $S_g$                & 0.690 & 0.641 \\
+Cells with $S_g>0.05$        & 49    & 138   \\
+Cells with $S_g>0.3$         & 36    & 23    \\
+Mean $S_g$ where $S_g>0.05$  & 0.505 & 0.192 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Molecular diffusion of dissolved CO$_2$}
+\label{sec:diff}
+
+\subsection{Model and numerical diffusion}
+
+When CO$_2$ dissolves into brine, the mixture is denser than the
+resident brine and sinks in Rayleigh--Taylor fingers, which accelerates
+dissolution trapping. Concentration gradients also drive a diffusive
+mass flux. The total macroscale flux of component $\gamma$ in phase
+$\alpha$ decomposes as \cite{bear1972,salo2024}
+\begin{equation}
+\mathbf{J}^\gamma_\alpha =
+\underbrace{\rho_\alpha\,\chi^\gamma_\alpha\,\mathbf{u}_\alpha}_{\text{advective}}
+\;-\;
+\underbrace{\phi\,\rho_\alpha S_\alpha\, D^\gamma_\alpha\,
+\nabla\chi^\gamma_\alpha}_{\text{diffusive (Fickian)}},
+\label{eq:diffflux}
+\end{equation}
+where $\chi^\gamma_\alpha$ is the mass fraction and $D^\gamma_\alpha$ a
+scalar pseudo-diffusivity that lumps molecular diffusivity and
+tortuosity; for CO$_2$ in brine the molecular value is
+$\mathcal{D}\sim 2$--$5\times10^{-9}$~m$^2$/s. MRST implements
+\eqref{eq:diffflux} by replacing the \texttt{ComponentTotalFlux} state
+function of \texttt{GenericBlackOilModel} with
+\texttt{CO2TotalFluxWithDiffusion}, which adds the second term with a
+TPFA-style face diffusivity.
+
+Whether the diffusive term matters numerically depends on the grid. A
+first-order upstream scheme carries a numerical diffusion
+$D_{\mathrm{num}}\sim u\,h$, with $u$ the Darcy velocity and $h$ the
+cell size. For a laboratory-scale problem with $k=100$~mD,
+$\mu=0.8$~cP, and a pressure gradient of 10~mbar/m,
+$u\approx1.2\times10^{-7}$~m/s, so $h=1$~cm gives
+$D_{\mathrm{num}}\sim10^{-9}$~m$^2$/s---larger than the physical
+diffusivity---while $h=2.5$~mm brings the two within reach of each
+other. Physical diffusion therefore only shapes the solution when the
+grid is fine enough, and conversely, coarse-grid simulations already
+contain more (numerical) diffusion than the physics requires
+\cite{salo2024}.
+
+\subsection{A FluidFlower-inspired convective mixing problem}
+
+The test case is a quasi-2D stratigraphic section
+($1\times0.66$~m, one 1-cm-thick cell layer) inspired by the FluidFlower
+benchmark rig \cite{flemisch2024}, repositioned at 1~km depth so that
+CO$_2$ is supercritical. The PEBI mesh conforms to a fault structure
+(fault permeability 10~mD inside a 1~D reservoir); sealing units are
+removed from the flow domain, and lateral boundary cells receive a
+$10^5$ pore-volume multiplier to emulate an open aquifer. CO$_2$ is
+injected in the lower-right reservoir at \SI{8}{mL/min} (surface
+conditions) for one day, with rate ramps, and the model then runs to
+$t=30$~days with dissolution active (\texttt{disgas}).
+
+We ran the case on two meshes: coarse ($h\approx1$~cm, 8{,}206 cells)
+and fine ($h\approx2.5$~mm, 105{,}279 cells, the resolution of Fig.~6 in
+\cite{salo2024}), each with $D=0$ and $D=2\times10^{-11}$~m$^2$/s.
+Figure~\ref{fig:diff-coarse} shows the dissolved CO$_2$ field
+($R_s$) at $t=30$~d on the coarse mesh: a CO$_2$-saturated gas
+accumulation under the sealing horizon, and sinking CO$_2$-rich brine
+below it. At this resolution the two diffusivities give nearly identical
+fields (mean $R_s$ 4.06 vs.\ 4.13~Sm$^3$/Sm$^3$; plume cell count 1{,}027
+vs.\ 1{,}105), which confirms the scaling argument: numerical diffusion
+at $h=1$~cm dominates the physical value.
+%
+Figure~\ref{fig:diff-fine} repeats the comparison on the fine mesh,
+where the convective fingers are resolved and the physical diffusivity
+becomes visible, as in Fig.~6 of \cite{salo2024}: without diffusion the
+fingers below the gas accumulation are thin and closely spaced; with
+$D=2\times10^{-11}$~m$^2$/s they are wider, smoother, and farther
+apart. Diffusion also enhances dissolution trapping: the mean dissolved
+ratio rises from 2.97 to 3.54~Sm$^3$/Sm$^3$, and the invaded region
+grows from 9{,}574 to 10{,}389 cells.
+\begin{figure}[tb]
+\centering
+\includegraphics[width=\textwidth]{fig_diffusion_fine30d}
+\caption{Fine mesh ($h\approx2.5$~mm, 105{,}279 cells): dissolved CO$_2$
+($R_s$) at $t=30$~d without (top) and with (bottom) molecular diffusion
+($D=2\times10^{-11}$~m$^2$/s). Finger width and spacing increase with
+the diffusivity. Compare with Fig.~6(a,b) of \cite{salo2024}.}
+\label{fig:diff-fine}
+\end{figure}
+
+\begin{figure}[tb]
+\centering
+\includegraphics[width=\textwidth]{fig_diffusion_rs30d}
+\caption{Coarse mesh ($h\approx1$~cm, 8{,}206 cells): dissolved CO$_2$
+($R_s$, Sm$^3$/Sm$^3$) at $t=30$~d, without (top) and with (bottom)
+molecular diffusion. Dark: CO$_2$-saturated brine under the gas
+accumulation; the halo below is the sinking CO$_2$-rich brine. At this
+resolution numerical diffusion masks the physical diffusivity.}
+\label{fig:diff-coarse}
+\end{figure}
+
+\section{Computational practice and portability}
+\label{sec:practice}
+
+\subsection{Runtimes}
+
+All simulations ran fully implicitly with a sparse direct linear solver,
+Newton line search, and iteration-targeting time steps, in GNU
+Octave~8.4 on a Linux workstation, single-threaded, without any MEX
+acceleration. Table~\ref{tab:runtimes} lists the runtimes. For
+reference, \cite{salo2024} reports \SI{6857}{s} for the 90{,}000-cell
+Johansen field case in MATLAB with a direct solver, reduced to
+\SI{417}{s} with a compiled AD backend and an algebraic multigrid CPR
+solver; that case was out of scope here for exactly this reason.
+
+\begin{table}[tb]
+\centering
+\caption{Reproduction runtimes (GNU Octave 8.4, single thread,
+direct linear solver).}
+\label{tab:runtimes}
+\begin{tabular}{lrrr}
+\toprule
+Case & Cells & Report steps & Runtime [s] \\
+\midrule
+PUNQ-S3, no hysteresis      & 1{,}761   & 100 & 33.5 \\
+PUNQ-S3, hysteresis         & 1{,}761   & 100 & 51.4 \\
+Diffusion, coarse, $D{=}0$    & 8{,}206   & 69  & 167.9 \\
+Diffusion, coarse, $D{=}2\times10^{-11}$ & 8{,}206 & 69 & 166.9 \\
+Diffusion, fine, $D{=}0$      & 105{,}279 & 69 & 3531.7 \\
+Diffusion, fine, $D{=}2\times10^{-11}$   & 105{,}279 & 69 & 2751.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{MATLAB-to-Octave portability}
+
+The reproduction required a set of well-defined substitutions, all
+outside the numerical kernels: the \texttt{table} class (used only by
+the PVT table writer; the shipped tables were used instead),
+\texttt{deval} (replaced by explicit midpoint integration of the
+hydrostatic ODE), \texttt{pdist2} (replaced by a direct norm),
+\texttt{griddedInterpolant} (MRST ships an Octave replacement of
+\texttt{fastInterpTable} that must shadow the MATLAB version), and
+\texttt{delaunayTriangulation} (a minimal shim exposing only the
+\texttt{edges} method suffices for the PEBI grid generator).
+
+One finding is of general interest for simulation-software
+reproducibility. The PEBI meshes of Section~\ref{sec:diff} initially
+came out with 38\% of cells having negative volume, without any error.
+The cause was a malformed block comment in
+\texttt{sortEdges.m} of the \texttt{upr} module: the \texttt{\%\}}
+closer was glued to the end of the copyright line. MATLAB tolerates
+this; Octave parses the block as unterminated, silently treats the whole
+function body as a comment, and the function degenerates to an identity
+map. The unsorted cell topology then produced inverted prisms during
+extrusion---three calls downstream of the defect. A second file
+(\texttt{mrstGridWithFullMappings.m}) lost its entire function
+definition to the same pattern. The defect exists only in MRST's subtree
+copy (the upstream UPR repository is well-formed), which points to a
+mass copyright-update script as the origin. The fix was submitted
+upstream.\footnote{\url{https://github.com/SINTEF-AppliedCompSci/MRST/pull/37}}
+The episode illustrates two practical lessons: (i) cross-interpreter
+parsing differences can corrupt \emph{results} rather than raise errors,
+so geometric invariants (here: positive cell volumes and face areas) are
+worth asserting after every grid-construction step; and (ii) automated
+rewriting of source files, however trivial, deserves a syntax check in
+all supported interpreters.
+
+\subsection{Companion Jupyter notebooks}
+
+The reproduction is also released as four executable Jupyter notebooks
+(\texttt{reproductions/salo2024-gcs/notebooks/}), one per case
+(structural trapping, PVT, hysteresis, diffusion), running MRST through
+an Octave Jupyter kernel with markdown narrative paraphrased from this
+report. The expensive cases (hysteresis, diffusion) default to loading
+the cached \texttt{results/*.mat} states rather than re-simulating, with
+a boolean flag to opt into a live re-run; both paths were verified to
+reproduce the numbers in this report exactly. Building them surfaced one
+further portability pitfall, specific to the interactive kernel rather
+than to headless scripts: this Octave build has no \texttt{qt} graphics
+toolkit, and \texttt{fltk} is needed for the 3-D patch plots (\texttt{plotGrid}
+on a 3-D grid) that gnuplot cannot draw; but forcing \texttt{fltk} as the
+session-wide default silently renders every \texttt{imagesc} plot --
+the type used throughout this report's own figures -- as a blank raster,
+with no error. The fix is to keep gnuplot as the default and switch to
+\texttt{fltk} only in the specific cell that draws a 3-D patch plot.
+
+\section{Conclusions}
+\label{sec:conclusions}
+
+We reproduced, in GNU Octave, the three \texttt{ad-blackoil} extensions
+for geologic CO$_2$ storage published by Sal\'o-Salgado et
+al.~\cite{salo2024}, plus a spill-point structural trapping analysis.
+The PVT deck round-trip is exact to machine precision. The PUNQ-S3
+validation reproduces the published effect of relative permeability
+hysteresis: residual trapping freezes the plume at its maximum extent
+and suppresses the mobile gas cap, with divergence starting exactly at
+flow reversal. The convective mixing example reproduces both the physics
+(dissolution-driven density fingering) and the numerical analysis: the
+physical diffusivity only matters once the grid-level numerical
+diffusion drops below it. The full reproduction, including a 105k-cell
+fine-mesh run, is feasible on open-source tooling in minutes to tens of
+minutes per case; the exercise also uncovered and fixed a silent
+grid-corruption defect, which underlines the value of independent
+reproduction across interpreters. Appendix~\ref{app:wellindex} shows that
+MRST's well-index model on this PEBI mesh is a Cartesian bounding-box
+approximation of Peaceman's formula, not a grid-aware one: the gap against
+a Voronoi-specific alternative grows with cell irregularity, though it
+stays within this problem's large injectivity margin.
+
+\appendix
+
+\section{Peaceman vs.\ Palagi--Aziz well index on a PEBI mesh}
+\label{app:wellindex}
+
+Section~\ref{sec:model} characterized MRST's well-reservoir coupling as
+Peaceman-type~\cite{peaceman1978}. This appendix examines that
+characterization on the diffusion case's own mesh
+(Section~\ref{sec:diff}), whose injector cell is a PEBI polygon, not a
+Cartesian block, and quantifies the effect of a grid-aware alternative.
+
+\subsection{The coupling and well index used by MRST}
+
+For a single perforated cell, the rate/pressure relation and well index
+implemented in \texttt{core/utils/computeWellIndex.m} are
+\begin{equation}
+q = -WI\cdot\mathrm{mob}\cdot\big(p_{\mathrm{cell}} - p_{bh} - \Delta
+p_{\mathrm{hydrostatic}}\big), \qquad
+WI = \frac{2\pi\sqrt{k_x k_y}\,h}{\ln(r_0/r_w) + \mathrm{skin}},
+\label{eq:wi-peaceman}
+\end{equation}
+with the anisotropic equivalent radius of Peaceman~\cite{peaceman1983}
+\begin{equation}
+r_0 = \frac{0.28\sqrt{\sqrt{k_y/k_x}\,\Delta x^2 +
+\sqrt{k_x/k_y}\,\Delta y^2}}{(k_y/k_x)^{1/4}+(k_x/k_y)^{1/4}}.
+\label{eq:r0-peaceman}
+\end{equation}
+Equation~\eqref{eq:r0-peaceman} assumes the well cell \emph{is} a
+rectangle of known $\Delta x,\Delta y$ -- true by construction on a
+Cartesian or corner-point grid, but undefined for an irregular PEBI
+polygon.
+
+\subsection{The bounding-box approximation on a PEBI grid}
+
+For any grid with a node list, MRST's \texttt{cellDims.m} supplies
+$\Delta x,\Delta y$ to \texttt{computeWellIndex} as the axis-aligned
+bounding box of the well cell's own nodes, whatever its true shape: it
+takes the minimum and maximum node coordinates and sets $\Delta x = M_x -
+m_x$, $\Delta y = M_y - m_y$. This never inspects the well cell's actual
+neighbors, connection transmissibilities, or number of sides -- two very
+differently shaped cells with the same bounding box receive the same well
+index.
+
+\subsection{Palagi and Aziz's well index for Voronoi grids}
+
+Palagi and Aziz~\cite{palagi1994a,palagi1994b} derive an equivalent
+radius directly from the well cell's actual connections, so it is defined
+for any polygon. Assuming radial flow around the well-cell gridpoint out
+to each neighbor $j$,
+\begin{equation}
+p_j - p_w = \frac{qB\mu\,\ln(L_{ij}/r_w)}{\theta kh},
+\label{eq:pa-radial}
+\end{equation}
+and requiring this to be consistent with the discretized single-phase
+flow equation for the well cell,
+\begin{equation}
+q = \sum_j \frac{T_{ij}}{B\mu}(p_j - p_o)
+  = \sum_j \frac{T_{ij}}{B\mu}(p_j - p_w) - \sum_j
+    \frac{T_{ij}}{B\mu}(p_o - p_w),
+\label{eq:pa-discrete}
+\end{equation}
+gives the equivalent radius as a transmissibility-weighted average over
+the real connections,
+\begin{equation}
+\ln r_{eq} = \frac{\sum_j T_{ij}\ln L_{ij} - \theta kh}{\sum_j T_{ij}},
+\qquad
+WI = \frac{\theta kh}{\ln(r_{eq}/r_w) + \mathrm{skin}},
+\label{eq:pa-req}
+\end{equation}
+where $T_{ij}$ is the two-point transmissibility of connection $ij$,
+$L_{ij}$ the distance between cell centroids, and $\theta$ the angle open
+to flow ($\theta=2\pi$ for a fully interior well cell, matching the
+implicit $2\pi$ in Eq.~\eqref{eq:wi-peaceman}, which keeps the two models
+directly comparable). Equation~\eqref{eq:pa-req} reduces to Peaceman's
+formula for a square Cartesian cell but stays correct for an irregular
+polygon with any number of neighbors. We implemented
+Eq.~\eqref{eq:pa-req} as a standalone function
+(\texttt{scripts/computeWellIndexPalagiAziz.m}) that reuses MRST's own
+\texttt{cellDims} and \texttt{computeTrans}, matching $kh$, skin, and
+$r_w$ exactly with Eq.~\eqref{eq:wi-peaceman} so the two well indices
+differ only in how $r_{eq}$ is derived; \texttt{addWell} accepts a
+precomputed \texttt{WI} directly, so no MRST internals needed modifying.
+
+\subsection{Comparison}
+
+Both models were evaluated at $r_w=1$~mm, skin $=0$, on the coarse mesh
+of Section~\ref{sec:diff}, at two locations: the paper's actual injection
+cell (in the reservoir matrix, nearly a cube,
+$\Delta x\approx\Delta y\approx\Delta z\approx1$~cm), and the most
+elongated fault-strip cell reachable near that same location (bounding-box
+aspect ratio $R_y\approx2.4$, found by ranking all fault cells with
+\texttt{scripts/find\_fault\_cell.m}) -- Palagi and Aziz~\cite{palagi1994b}
+flag $R_y>2$ as exactly the regime where the Cartesian formula stops being
+reliable. Table~\ref{tab:wi} shows the well-index gap growing with cell
+irregularity, as expected.
+
+\begin{table}[tb]
+\centering
+\caption{Well index at $r_w=1$~mm, skin $=0$: Peaceman (MRST default)
+vs.\ Palagi--Aziz (Eq.~\ref{eq:pa-req}).}
+\label{tab:wi}
+\begin{tabular}{lccc}
+\toprule
+Location & $WI$ Peaceman & $WI$ Palagi--Aziz & Difference \\
+\midrule
+Reservoir well (original)  & $9.034\times10^{-14}$ & $8.157\times10^{-14}$ & $-9.71\%$ \\
+Elongated fault-strip cell & $5.555\times10^{-16}$ & $4.583\times10^{-16}$ & $-17.50\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Because this well is rate-controlled, $WI$ only sets the drawdown
+$p_{\mathrm{cell}}-p_{bh}$ needed to deliver the fixed 8~mL/min --
+it never changes how much CO$_2$ enters the reservoir, so the
+saturation and dissolved-CO$_2$ fields should be governed by rate, not by
+$WI$, and only the bottom-hole pressure should respond. We reran the
+coarse-mesh, $D=0$ case with each well index at both locations
+(Table~\ref{tab:wi-effect}): the field-wide difference stays at the level
+of solver noise at both locations, but the bottom-hole-pressure gap grows
+about $230\times$ from the reservoir well to the fault-strip cell,
+tracking the larger well-index gap and the fault's lower permeability
+(10~mD vs.\ 1000~mD, i.e.\ less injectivity headroom).
+
+\begin{table}[tb]
+\centering
+\caption{Effect of the well-index model on the coarse-mesh, $D=0$
+simulation (max.\ absolute difference over the full 30-day schedule).}
+\label{tab:wi-effect}
+\begin{tabular}{lccc}
+\toprule
+Location & Max $|\Delta p_{bh}|$ [Pa] & Max $|\Delta r_s|$ & Max $|\Delta S_g|$ \\
+\midrule
+Reservoir well              & 0.35 & $1.6\times10^{-6}$ & $3.8\times10^{-9}$ \\
+Elongated fault-strip cell  & 80.0 & $6.5\times10^{-6}$ & $1.5\times10^{-7}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Discussion}
+
+MRST's well model is Peaceman-type, but the equivalent radius it computes
+for a PEBI cell is a bounding-box stand-in for the Cartesian formula, not
+a generalization of it. That gap is real and grows with cell irregularity,
+here about twice as large at an elongated fault-strip cell as at a
+well-conditioned reservoir cell. Whether it matters for a given simulation
+is a separate question: for this rate-controlled injector it changes only
+the computed bottom-hole pressure, never the injected mass, and even the
+largest pressure gap found (80~Pa against a $\sim$9.9~MPa reservoir
+pressure) is negligible at this problem's flow rate -- the reservoir has
+far more injectivity headroom than this well ever calls on. A
+pressure-controlled well, a higher rate, or a lower-permeability target
+would be expected to show a larger effect, since drawdown itself would no
+longer be negligible.
+
+\section*{Acknowledgments}
+
+This report and the reproduction runs were prepared with the assistance
+of Claude Code (Anthropic). MRST is developed by the Applied
+Computational Science group at SINTEF Digital. The example decks and
+code are from L.~Sal\'o-Salgado's \texttt{mrst-adblackoil-gcs}
+repository and MRST's \texttt{co2lab-mit} module.
+
+\begin{thebibliography}{00}
+
+\bibitem{benson2005} S.~Benson, P.~Cook, et al., Underground geological
+storage, in: IPCC Special Report on Carbon Dioxide Capture and Storage,
+Cambridge University Press, 2005, pp. 196--276.
+
+\bibitem{lie2019} K.-A. Lie, An Introduction to Reservoir Simulation
+Using MATLAB/GNU Octave: User Guide for the MATLAB Reservoir Simulation
+Toolbox (MRST), Cambridge University Press, 2019.
+
+\bibitem{lie-moyner2021} K.-A. Lie, O.~M{\o}yner (Eds.), Advanced
+Modelling with the MATLAB Reservoir Simulation Toolbox, Cambridge
+University Press, 2021.
+
+\bibitem{salo2024} L.~Sal\'o-Salgado, O.~M{\o}yner, K.-A. Lie,
+R.~Juanes, Three-dimensional simulation of geologic carbon dioxide
+sequestration using MRST, Advances in Geo-Energy Research 14 (2024)
+34--48. \url{https://doi.org/10.46690/ager.2024.10.06}
+
+\bibitem{hassanzadeh2008} H.~Hassanzadeh, M.~Pooladi-Darvish,
+A.~M. Elsharkawy, D.~W. Keith, Y.~Leonenko, Predicting PVT data for
+CO$_2$--brine mixtures for black-oil simulation of CO$_2$ geological
+storage, International Journal of Greenhouse Gas Control 2 (2008)
+65--77.
+
+\bibitem{nilsen2015} H.~M. Nilsen, K.-A. Lie, O.~Andersen, Analysis of
+CO$_2$ trapping capacities and long-term migration for geological
+formations in the Norwegian North Sea using MRST-co2lab, Computers \&
+Geosciences 79 (2015) 15--26.
+
+\bibitem{spycher2003} N.~Spycher, K.~Pruess, J.~Ennis-King,
+CO$_2$--H$_2$O mixtures in the geological sequestration of CO$_2$. I.
+Assessment and calculation of mutual solubilities from 12 to 100$^\circ$C
+and up to 600 bar, Geochimica et Cosmochimica Acta 67 (2003) 3015--3031.
+
+\bibitem{spycher2005} N.~Spycher, K.~Pruess, CO$_2$--H$_2$O mixtures in
+the geological sequestration of CO$_2$. II. Partitioning in chloride
+brines at 12--100$^\circ$C and up to 600 bar, Geochimica et Cosmochimica
+Acta 69 (2005) 3309--3320.
+
+\bibitem{duan2003} Z.~Duan, R.~Sun, An improved model calculating CO$_2$
+solubility in pure water and aqueous NaCl solutions from 273 to 533 K
+and from 0 to 2000 bar, Chemical Geology 193 (2003) 257--271.
+
+\bibitem{redlich1949} O.~Redlich, J.~N.~S. Kwong, On the thermodynamics
+of solutions. V. An equation of state. Fugacities of gaseous solutions,
+Chemical Reviews 44 (1949) 233--244.
+
+\bibitem{rowe1970} A.~M. Rowe Jr., J.~C.~S. Chou, Pressure--volume--
+temperature--concentration relation of aqueous NaCl solutions, Journal
+of Chemical and Engineering Data 15 (1970) 61--66.
+
+\bibitem{batzle1992} M.~Batzle, Z.~Wang, Seismic properties of pore
+fluids, Geophysics 57 (1992) 1396--1408.
+
+\bibitem{garcia2001} J.~E. Garcia, Density of aqueous solutions of
+CO$_2$, Report LBNL-49023, Lawrence Berkeley National Laboratory, 2001.
+
+\bibitem{islam2012} A.~W. Islam, E.~S. Carlson, Viscosity models and
+effects of dissolved CO$_2$, Energy \& Fuels 26 (2012) 5330--5336.
+
+\bibitem{fenghour1998} A.~Fenghour, W.~A. Wakeham, V.~Vesovic, The
+viscosity of carbon dioxide, Journal of Physical and Chemical Reference
+Data 27 (1998) 31--44.
+
+\bibitem{davidson1993} T.~A. Davidson, A simple and accurate method for
+calculating viscosity of gaseous mixtures, Report of Investigations
+9456, US Bureau of Mines, 1993.
+
+\bibitem{juanes2006} R.~Juanes, E.~J. Spiteri, F.~M. Orr Jr.,
+M.~J. Blunt, Impact of relative permeability hysteresis on geological
+CO$_2$ storage, Water Resources Research 42 (2006) W12418.
+
+\bibitem{killough1976} J.~E. Killough, Reservoir simulation with
+history-dependent saturation functions, SPE Journal 16 (1976) 37--48.
+
+\bibitem{land1968} C.~S. Land, Calculation of imbibition relative
+permeability for two- and three-phase flow from rock properties, SPE
+Journal 8 (1968) 149--156.
+
+\bibitem{bear1972} J.~Bear, Dynamics of Fluids in Porous Media, Dover,
+New York, 1972.
+
+\bibitem{flemisch2024} B.~Flemisch, et al., The FluidFlower validation
+benchmark study for the storage of CO$_2$, Transport in Porous Media 151
+(2024) 865--912.
+
+\bibitem{peaceman1978} D.~W. Peaceman, Interpretation of well-block
+pressures in numerical reservoir simulation, SPE Journal 18 (1978)
+183--194.
+
+\bibitem{peaceman1983} D.~W. Peaceman, Interpretation of well-block
+pressures in numerical reservoir simulation with nonsquare grid blocks
+and anisotropic permeability, SPE Journal 23 (1983) 531--543.
+
+\bibitem{palagi1994a} C.~L. Palagi, K.~Aziz, Use of Voronoi grid in
+reservoir simulation, SPE Advanced Technology Series 2 (2) (1994) 69--77.
+
+\bibitem{palagi1994b} C.~L. Palagi, K.~Aziz, Modeling vertical and
+horizontal wells with Voronoi grid, SPE Reservoir Engineering 9 (1)
+(1994) 15--21.
+
+\end{thebibliography}
+
+\end{document}

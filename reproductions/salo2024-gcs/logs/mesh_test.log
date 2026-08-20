@@ -1,0 +1,67 @@
+Welcome to the MATLAB Reservoir Simulation Toolbox (MRST)!
+You are using the development version at commit 8aaf7d2a45b07455b131ed1f04b5c5e17a458d1a
+
+Useful commands for getting started:
+ - List all introductory examples:   mrstExamples()
+ - List all modules:                 mrstPath('list')
+ - Load modules using GUI:           mrstModule('gui')
+ - Explore all available data sets:  mrstDatasetGUI()
+ - List examples of a module:        mrstExamples('ad-blackoil')
+ - Explore modules and publications: mrstExploreModules()
+ - Show all examples in all modules: mrstExamples('all')
+ - Show settings for MRST:           mrstSettings()
+ - Display this message:             mrstStartupMessage()
+
+For assistance and discussions about MRST, please visit our mailing list at
+	www.sintef.no/projectweb/mrst/forum/ (sintef-mrst@googlegroups.com)
+For some common queries, see our FAQ: www.sintef.no/projectweb/mrst/faq/
+warning: isdir is obsolete; use isfolder or dir_in_loadpath instead
+warning: block comment unterminated at end of input
+warning: called from
+    clippedPebi2D at line 106 column 3
+    compositePebiGrid2D at line 302 column 7
+    simpleExtrudedFluidFlowerMesh at line 96 column 13
+
+warning: near line 118 of file 'sortEdges.m'
+warning: called from
+    clippedPebi2D at line 106 column 3
+    compositePebiGrid2D at line 302 column 7
+    simpleExtrudedFluidFlowerMesh at line 96 column 13
+
+warning: block comment unterminated at end of input
+warning: called from
+    clippedPebi2D at line 106 column 3
+    compositePebiGrid2D at line 302 column 7
+    simpleExtrudedFluidFlowerMesh at line 96 column 13
+
+warning: near line 118 of file 'sortEdges.m'
+warning: called from
+    clippedPebi2D at line 106 column 3
+    compositePebiGrid2D at line 302 column 7
+    simpleExtrudedFluidFlowerMesh at line 96 column 13
+
+warning: block comment unterminated at end of input
+warning: called from
+    clippedPebi2D at line 106 column 3
+    compositePebiGrid2D at line 302 column 7
+    simpleExtrudedFluidFlowerMesh at line 96 column 13
+
+warning: near line 118 of file 'sortEdges.m'
+warning: called from
+    clippedPebi2D at line 106 column 3
+    compositePebiGrid2D at line 302 column 7
+    simpleExtrudedFluidFlowerMesh at line 96 column 13
+
+Elapsed time is 15.7744 seconds.
+warning: 2216 faces with non-positive area detected.
+Such faces should be removed before calling computeGeometry
+warning: called from
+    computeGeometry>face_geom3d at line 516 column 7
+    computeGeometry>ensureValidFaceGeometry at line 453 column 37
+    computeGeometry>geom_3d_cell_block at line 307 column 9
+    computeGeometry>geom_3d at line 218 column 12
+    computeGeometry at line 163 column 38
+    simpleExtrudedFluidFlowerMesh at line 153 column 11
+
+Elapsed time is 16.4586 seconds.
+Mesh generated: 8206 cells (2D: 8206)

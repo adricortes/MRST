@@ -1,0 +1,149 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\Newlabel{1}{a}
+\citation{benson2005}
+\citation{lie2019,lie-moyner2021}
+\citation{salo2024}
+\citation{hassanzadeh2008,salo2024}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{2}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Governing equations and discretization}{2}{section.2}\protected@file@percent }
+\newlabel{sec:model}{{2}{2}{Governing equations and discretization}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Black-oil formulation for CO$_2$--brine systems}{2}{subsection.2.1}\protected@file@percent }
+\citation{lie2019}
+\citation{lie-moyner2021}
+\citation{nilsen2015}
+\newlabel{eq:bo-oleic}{{1}{3}{Black-oil formulation for CO$_2$--brine systems}{equation.2.1}{}}
+\newlabel{eq:bo-gas}{{2}{3}{Black-oil formulation for CO$_2$--brine systems}{equation.2.2}{}}
+\newlabel{eq:darcy}{{3}{3}{Black-oil formulation for CO$_2$--brine systems}{equation.2.3}{}}
+\newlabel{eq:densities}{{4}{3}{Black-oil formulation for CO$_2$--brine systems}{equation.2.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Discretization and solvers in MRST}{3}{subsection.2.2}\protected@file@percent }
+\newlabel{eq:tpfa}{{5}{3}{Discretization and solvers in MRST}{equation.2.5}{}}
+\citation{salo2024}
+\citation{hassanzadeh2008}
+\citation{spycher2003,spycher2005}
+\citation{duan2003}
+\citation{redlich1949}
+\citation{rowe1970}
+\citation{batzle1992}
+\citation{garcia2001}
+\citation{islam2012}
+\citation{fenghour1998}
+\citation{davidson1993}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Spill-point analysis of the synthetic sandbox aquifer. Left: top-surface depth (m); white dots mark cells inside structural traps. Right: the 13 numbered traps (red), the spill paths connecting them (green), and the remaining cells (blue). CO$_2$ that leaks from a trap migrates along the spill path to the next trap up-dip.}}{4}{figure.1}\protected@file@percent }
+\newlabel{fig:traps}{{1}{4}{Spill-point analysis of the synthetic sandbox aquifer. Left: top-surface depth (m); white dots mark cells inside structural traps. Right: the 13 numbered traps (red), the spill paths connecting them (green), and the remaining cells (blue). CO$_2$ that leaks from a trap migrates along the spill path to the next trap up-dip}{figure.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Structural trapping: spill-point analysis}{4}{section.3}\protected@file@percent }
+\newlabel{sec:trapping}{{3}{4}{Structural trapping: spill-point analysis}{section.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}PVT data generation for CO$_2$--brine black-oil models}{4}{section.4}\protected@file@percent }
+\newlabel{sec:pvt}{{4}{4}{PVT data generation for CO$_2$--brine black-oil models}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Thermodynamic model}{4}{subsection.4.1}\protected@file@percent }
+\citation{salo2024}
+\citation{salo2024}
+\citation{salo2024}
+\citation{juanes2006}
+\newlabel{eq:rvbg}{{6}{5}{Thermodynamic model}{equation.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Verification}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Relative permeability hysteresis}{5}{section.5}\protected@file@percent }
+\newlabel{sec:hyst}{{5}{5}{Relative permeability hysteresis}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Killough's model with Land trapping}{5}{subsection.5.1}\protected@file@percent }
+\citation{killough1976}
+\citation{land1968}
+\citation{salo2024}
+\citation{juanes2006}
+\citation{salo2024}
+\citation{salo2024}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Verification of the PVT deck round-trip at $T=\SI {80}{\celsius }$, $S=10^5$~ppm. Thick lines: MRST fluid object; thin lines: tabulated output of \texttt  {pvtBrineWithCO2BlackOil}. From left to right: CO$_2$ density, CO$_2$ viscosity (log scale), brine density without and with dissolved CO$_2$, brine viscosity. The curves coincide to machine precision; compare with Fig.~2 of \cite  {salo2024}.}}{6}{figure.2}\protected@file@percent }
+\newlabel{fig:pvt}{{2}{6}{Verification of the PVT deck round-trip at $T=\SI {80}{\celsius }$, $S=10^5$~ppm. Thick lines: MRST fluid object; thin lines: tabulated output of \texttt {pvtBrineWithCO2BlackOil}. From left to right: CO$_2$ density, CO$_2$ viscosity (log scale), brine density without and with dissolved CO$_2$, brine viscosity. The curves coincide to machine precision; compare with Fig.~2 of \cite {salo2024}}{figure.2}{}}
+\newlabel{eq:killough}{{7}{6}{Killough's model with Land trapping}{equation.5.7}{}}
+\newlabel{eq:land}{{8}{6}{Killough's model with Land trapping}{equation.5.8}{}}
+\citation{juanes2006}
+\citation{salo2024}
+\citation{juanes2006}
+\citation{salo2024}
+\citation{salo2024}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Hysteretic gas relative permeability of the PUNQ-S3 deck: primary drainage curve, bounding imbibition curve, and the Killough scanning curve for a flow reversal at $S_{gi}=0.4$. The scanning curve reaches zero at the Land trapped saturation $S_{gt}(S_{gi})\approx 0.29$. Compare with Fig.~3 of \cite  {salo2024}.}}{7}{figure.3}\protected@file@percent }
+\newlabel{fig:kr}{{3}{7}{Hysteretic gas relative permeability of the PUNQ-S3 deck: primary drainage curve, bounding imbibition curve, and the Killough scanning curve for a flow reversal at $S_{gi}=0.4$. The scanning curve reaches zero at the Land trapped saturation $S_{gt}(S_{gi})\approx 0.29$. Compare with Fig.~3 of \cite {salo2024}}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Validation on the PUNQ-S3 model}{7}{subsection.5.2}\protected@file@percent }
+\citation{bear1972,salo2024}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces PUNQ-S3: CO$_2$ saturation per layer (left to right: layers 1--5, top of the formation to its base) at $t=500$~y. Top row: no hysteresis; bottom row: Killough hysteresis. Gray marks inactive cells. Hysteresis suppresses the compact gas cap and leaves a broad, low-saturation, residually trapped plume. Compare with Fig.~4 of \cite  {salo2024}.}}{8}{figure.4}\protected@file@percent }
+\newlabel{fig:punq-maps}{{4}{8}{PUNQ-S3: CO$_2$ saturation per layer (left to right: layers 1--5, top of the formation to its base) at $t=500$~y. Top row: no hysteresis; bottom row: Killough hysteresis. Gray marks inactive cells. Hysteresis suppresses the compact gas cap and leaves a broad, low-saturation, residually trapped plume. Compare with Fig.~4 of \cite {salo2024}}{figure.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces PUNQ-S3 plume metrics at $t=500$~y.}}{8}{table.1}\protected@file@percent }
+\newlabel{tab:punq}{{1}{8}{PUNQ-S3 plume metrics at $t=500$~y}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Molecular diffusion of dissolved CO$_2$}{8}{section.6}\protected@file@percent }
+\newlabel{sec:diff}{{6}{8}{Molecular diffusion of dissolved CO$_2$}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Model and numerical diffusion}{8}{subsection.6.1}\protected@file@percent }
+\newlabel{eq:diffflux}{{9}{8}{Model and numerical diffusion}{equation.6.9}{}}
+\citation{salo2024}
+\citation{flemisch2024}
+\citation{salo2024}
+\citation{salo2024}
+\citation{salo2024}
+\citation{salo2024}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces PUNQ-S3 plume evolution. Left: number of cells with $S_g>0.05$; right: maximum gas saturation. The curves coincide during injection ($t\le 10$~y) and diverge after flow reversal, when the hysteretic scanning curves activate.}}{9}{figure.5}\protected@file@percent }
+\newlabel{fig:punq-evol}{{5}{9}{PUNQ-S3 plume evolution. Left: number of cells with $S_g>0.05$; right: maximum gas saturation. The curves coincide during injection ($t\le 10$~y) and diverge after flow reversal, when the hysteretic scanning curves activate}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}A FluidFlower-inspired convective mixing problem}{9}{subsection.6.2}\protected@file@percent }
+\citation{salo2024}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Fine mesh ($h\approx 2.5$~mm, 105{,}279 cells): dissolved CO$_2$ ($R_s$) at $t=30$~d without (top) and with (bottom) molecular diffusion ($D=2\times 10^{-11}$~m$^2$/s). Finger width and spacing increase with the diffusivity. Compare with Fig.~6(a,b) of \cite  {salo2024}.}}{10}{figure.6}\protected@file@percent }
+\newlabel{fig:diff-fine}{{6}{10}{Fine mesh ($h\approx 2.5$~mm, 105{,}279 cells): dissolved CO$_2$ ($R_s$) at $t=30$~d without (top) and with (bottom) molecular diffusion ($D=2\times 10^{-11}$~m$^2$/s). Finger width and spacing increase with the diffusivity. Compare with Fig.~6(a,b) of \cite {salo2024}}{figure.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Computational practice and portability}{10}{section.7}\protected@file@percent }
+\newlabel{sec:practice}{{7}{10}{Computational practice and portability}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Runtimes}{10}{subsection.7.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Coarse mesh ($h\approx 1$~cm, 8{,}206 cells): dissolved CO$_2$ ($R_s$, Sm$^3$/Sm$^3$) at $t=30$~d, without (top) and with (bottom) molecular diffusion. Dark: CO$_2$-saturated brine under the gas accumulation; the halo below is the sinking CO$_2$-rich brine. At this resolution numerical diffusion masks the physical diffusivity.}}{11}{figure.7}\protected@file@percent }
+\newlabel{fig:diff-coarse}{{7}{11}{Coarse mesh ($h\approx 1$~cm, 8{,}206 cells): dissolved CO$_2$ ($R_s$, Sm$^3$/Sm$^3$) at $t=30$~d, without (top) and with (bottom) molecular diffusion. Dark: CO$_2$-saturated brine under the gas accumulation; the halo below is the sinking CO$_2$-rich brine. At this resolution numerical diffusion masks the physical diffusivity}{figure.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}MATLAB-to-Octave portability}{11}{subsection.7.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Reproduction runtimes (GNU Octave 8.4, single thread, direct linear solver).}}{12}{table.2}\protected@file@percent }
+\newlabel{tab:runtimes}{{2}{12}{Reproduction runtimes (GNU Octave 8.4, single thread, direct linear solver)}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Companion Jupyter notebooks}{12}{subsection.7.3}\protected@file@percent }
+\citation{salo2024}
+\citation{peaceman1978}
+\citation{peaceman1983}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusions}{13}{section.8}\protected@file@percent }
+\newlabel{sec:conclusions}{{8}{13}{Conclusions}{section.8}{}}
+\@writefile{toc}{\let\numberline\tmptocnumberline}
+\@writefile{toc}{\contentsline {section}{\numberline {Appendix ~A}Peaceman vs.\ Palagi--Aziz well index on a PEBI mesh}{13}{appendix.A}\protected@file@percent }
+\newlabel{app:wellindex}{{Appendix ~A}{13}{Peaceman vs.\ Palagi--Aziz well index on a PEBI mesh}{appendix.A}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {Appendix ~A.1}The coupling and well index used by MRST}{13}{subsection.A.1}\protected@file@percent }
+\newlabel{eq:wi-peaceman}{{A.1}{13}{The coupling and well index used by MRST}{equation.A.1}{}}
+\citation{palagi1994a,palagi1994b}
+\newlabel{eq:r0-peaceman}{{A.2}{14}{The coupling and well index used by MRST}{equation.A.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {Appendix ~A.2}The bounding-box approximation on a PEBI grid}{14}{subsection.A.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {Appendix ~A.3}Palagi and Aziz's well index for Voronoi grids}{14}{subsection.A.3}\protected@file@percent }
+\newlabel{eq:pa-radial}{{A.3}{14}{Palagi and Aziz's well index for Voronoi grids}{equation.A.3}{}}
+\newlabel{eq:pa-discrete}{{A.4}{14}{Palagi and Aziz's well index for Voronoi grids}{equation.A.4}{}}
+\newlabel{eq:pa-req}{{A.5}{14}{Palagi and Aziz's well index for Voronoi grids}{equation.A.5}{}}
+\citation{palagi1994b}
+\@writefile{lot}{\contentsline {table}{\numberline {A.3}{\ignorespaces Well index at $r_w=1$~mm, skin $=0$: Peaceman (MRST default) vs.\ Palagi--Aziz (Eq.~\ref {eq:pa-req}).}}{15}{table.3}\protected@file@percent }
+\newlabel{tab:wi}{{A.3}{15}{Well index at $r_w=1$~mm, skin $=0$: Peaceman (MRST default) vs.\ Palagi--Aziz (Eq.~\ref {eq:pa-req})}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {Appendix ~A.4}Comparison}{15}{subsection.A.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {Appendix ~A.5}Discussion}{15}{subsection.A.5}\protected@file@percent }
+\bibcite{benson2005}{{1}{}{{}}{{}}}
+\bibcite{lie2019}{{2}{}{{}}{{}}}
+\bibcite{lie-moyner2021}{{3}{}{{}}{{}}}
+\bibcite{salo2024}{{4}{}{{}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {A.4}{\ignorespaces Effect of the well-index model on the coarse-mesh, $D=0$ simulation (max.\ absolute difference over the full 30-day schedule).}}{16}{table.4}\protected@file@percent }
+\newlabel{tab:wi-effect}{{A.4}{16}{Effect of the well-index model on the coarse-mesh, $D=0$ simulation (max.\ absolute difference over the full 30-day schedule)}{table.4}{}}
+\bibcite{hassanzadeh2008}{{5}{}{{}}{{}}}
+\bibcite{nilsen2015}{{6}{}{{}}{{}}}
+\bibcite{spycher2003}{{7}{}{{}}{{}}}
+\bibcite{spycher2005}{{8}{}{{}}{{}}}
+\bibcite{duan2003}{{9}{}{{}}{{}}}
+\bibcite{redlich1949}{{10}{}{{}}{{}}}
+\bibcite{rowe1970}{{11}{}{{}}{{}}}
+\bibcite{batzle1992}{{12}{}{{}}{{}}}
+\bibcite{garcia2001}{{13}{}{{}}{{}}}
+\bibcite{islam2012}{{14}{}{{}}{{}}}
+\bibcite{fenghour1998}{{15}{}{{}}{{}}}
+\bibcite{davidson1993}{{16}{}{{}}{{}}}
+\bibcite{juanes2006}{{17}{}{{}}{{}}}
+\bibcite{killough1976}{{18}{}{{}}{{}}}
+\bibcite{land1968}{{19}{}{{}}{{}}}
+\bibcite{bear1972}{{20}{}{{}}{{}}}
+\bibcite{flemisch2024}{{21}{}{{}}{{}}}
+\bibcite{peaceman1978}{{22}{}{{}}{{}}}
+\bibcite{peaceman1983}{{23}{}{{}}{{}}}
+\bibcite{palagi1994a}{{24}{}{{}}{{}}}
+\bibcite{palagi1994b}{{25}{}{{}}{{}}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers
+\gdef \@abspage@last{18}

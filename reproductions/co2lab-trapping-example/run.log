@@ -1,0 +1,60 @@
+Welcome to the MATLAB Reservoir Simulation Toolbox (MRST)!
+You are using the development version at commit 8aaf7d2a45b07455b131ed1f04b5c5e17a458d1a
+
+Useful commands for getting started:
+ - List all introductory examples:   mrstExamples()
+ - List all modules:                 mrstPath('list')
+ - Load modules using GUI:           mrstModule('gui')
+ - Explore all available data sets:  mrstDatasetGUI()
+ - List examples of a module:        mrstExamples('ad-blackoil')
+ - Explore modules and publications: mrstExploreModules()
+ - Show all examples in all modules: mrstExamples('all')
+ - Show settings for MRST:           mrstSettings()
+ - Display this message:             mrstStartupMessage()
+
+For assistance and discussions about MRST, please visit our mailing list at
+	www.sintef.no/projectweb/mrst/forum/ (sintef-mrst@googlegroups.com)
+For some common queries, see our FAQ: www.sintef.no/projectweb/mrst/faq/
+warning: isdir is obsolete; use isfolder or dir_in_loadpath instead
+warning: function /home/adriano/codes/MRST/co2lab/co2lab-common/utils/ifelse.m shadows a built-in function
+warning: called from
+    mrstModule>add_modules at line 262 column 10
+    mrstModule at line 96 column 24
+    run_first_trapping at line 12 column 1
+    run at line 93 column 5
+
+
+Number of traps found: 13
+warning: using the gnuplot graphics toolkit is discouraged
+
+The gnuplot graphics toolkit is not actively maintained and has a number
+of limitations that are unlikely to be fixed.  Communication with gnuplot
+uses a one-directional pipe and limited information is passed back to the
+Octave interpreter so most changes made interactively in the plot window
+will not be reflected in the graphics properties managed by Octave.  For
+example, if the plot window is closed with a mouse click, Octave will not
+be notified and will not update its internal list of open figure windows.
+The qt toolkit is recommended instead.
+Total trapping capacity is: 5.099e+06
+This amounts to 40.79 % of a total pore volume of 1.25e+07
+
+trap ix   | trap vol(m3)  | cells in trap
+----------+---------------+--------------
+      6   |   6.624e+05   |   246
+      1   |   6.604e+05   |   246
+     11   |   6.403e+05   |   239
+      9   |   4.555e+05   |   169
+      4   |   3.937e+05   |   159
+     12   |   3.544e+05   |   135
+     13   |   3.250e+05   |   117
+      7   |   2.995e+05   |   127
+     10   |   2.887e+05   |   113
+      8   |   2.771e+05   |   106
+      2   |   2.609e+05   |   114
+      5   |   2.437e+05   |   106
+      3   |   2.374e+05   |    98
+
+Together, the five largest traps cover 2.81e+06 m3, which represents 55.2% of
+the total trapping capacity of this grid.
+
+Driver finished. Figures saved to /tmp/claude-1000/-home-adriano-codes-MRST/ad017599-1c83-453b-a05e-6b33ad5bc00f/scratchpad

@@ -1,0 +1,126 @@
+Welcome to the MATLAB Reservoir Simulation Toolbox (MRST)!
+You are using the development version at commit 8aaf7d2a45b07455b131ed1f04b5c5e17a458d1a
+
+Useful commands for getting started:
+ - List all introductory examples:   mrstExamples()
+ - List all modules:                 mrstPath('list')
+ - Load modules using GUI:           mrstModule('gui')
+ - Explore all available data sets:  mrstDatasetGUI()
+ - List examples of a module:        mrstExamples('ad-blackoil')
+ - Explore modules and publications: mrstExploreModules()
+ - Show all examples in all modules: mrstExamples('all')
+ - Show settings for MRST:           mrstSettings()
+ - Display this message:             mrstStartupMessage()
+
+For assistance and discussions about MRST, please visit our mailing list at
+	www.sintef.no/projectweb/mrst/forum/ (sintef-mrst@googlegroups.com)
+For some common queries, see our FAQ: www.sintef.no/projectweb/mrst/faq/
+warning: isdir is obsolete; use isfolder or dir_in_loadpath instead
+Solving timestep 001/100:                                -> 1 Year, 648 Seconds
+Solving timestep 002/100: 1 Year, 648 Seconds            -> 2 Years, 1296 Seconds
+Solving timestep 003/100: 2 Years, 1296 Seconds          -> 3 Years, 1944 Seconds
+Solving timestep 004/100: 3 Years, 1944 Seconds          -> 4 Years, 2592 Seconds
+Solving timestep 005/100: 4 Years, 2592 Seconds          -> 5 Years, 3240 Seconds
+Solving timestep 006/100: 5 Years, 3240 Seconds          -> 6 Years, 1 Hour, 288.00 Seconds
+Solving timestep 007/100: 6 Years, 1 Hour, 288.00 Seconds -> 7 Years, 1 Hour, 936.00 Seconds
+Solving timestep 008/100: 7 Years, 1 Hour, 936.00 Seconds -> 8 Years, 1 Hour, 1584.00 Seconds
+Solving timestep 009/100: 8 Years, 1 Hour, 1584.00 Seconds -> 9 Years, 1 Hour, 2232.00 Seconds
+Solving timestep 010/100: 9 Years, 1 Hour, 2232.00 Seconds -> 10 Years, 1 Hour, 2880.00 Seconds
+Solving timestep 011/100: 10 Years, 1 Hour, 2880.00 Seconds -> 11 Years, 1 Hour, 3528.00 Seconds
+Solver did not converge in 15 iterations for timestep of length 1 Year, 648 Seconds. Cutting timestep.
+Solver did not converge in 15 iterations for timestep of length 182 Days, 15 Hours. Cutting timestep.
+Solver did not converge in 15 iterations for timestep of length 91 Days, 7 Hours, 1800 Seconds. Cutting timestep.
+Solver did not converge in 15 iterations for timestep of length 45 Days, 15 Hours, 2700 Seconds. Cutting timestep.
+Solving timestep 012/100: 11 Years, 1 Hour, 3528.00 Seconds -> 12 Years, 2 Hours, 576.00 Seconds
+Solving timestep 013/100: 12 Years, 2 Hours, 576.00 Seconds -> 13 Years, 2 Hours, 1224.00 Seconds
+Solving timestep 014/100: 13 Years, 2 Hours, 1224.00 Seconds -> 14 Years, 2 Hours, 1872.00 Seconds
+Solving timestep 015/100: 14 Years, 2 Hours, 1872.00 Seconds -> 15 Years, 2 Hours, 2520.00 Seconds
+Solving timestep 016/100: 15 Years, 2 Hours, 2520.00 Seconds -> 16 Years, 2 Hours, 3168.00 Seconds
+Solving timestep 017/100: 16 Years, 2 Hours, 3168.00 Seconds -> 17 Years, 3 Hours, 216.00 Seconds
+Solving timestep 018/100: 17 Years, 3 Hours, 216.00 Seconds -> 18 Years, 3 Hours, 864.00 Seconds
+Solving timestep 019/100: 18 Years, 3 Hours, 864.00 Seconds -> 19 Years, 3 Hours, 1512.00 Seconds
+Solving timestep 020/100: 19 Years, 3 Hours, 1512.00 Seconds -> 20 Years, 3 Hours, 2160.00 Seconds
+Solving timestep 021/100: 20 Years, 3 Hours, 2160.00 Seconds -> 21 Years, 3 Hours, 2808.00 Seconds
+Solving timestep 022/100: 21 Years, 3 Hours, 2808.00 Seconds -> 22 Years, 3 Hours, 3456.00 Seconds
+Solving timestep 023/100: 22 Years, 3 Hours, 3456.00 Seconds -> 23 Years, 4 Hours, 504.00 Seconds
+Solving timestep 024/100: 23 Years, 4 Hours, 504.00 Seconds -> 24 Years, 4 Hours, 1152.00 Seconds
+Solving timestep 025/100: 24 Years, 4 Hours, 1152.00 Seconds -> 25 Years, 4 Hours, 1800.00 Seconds
+Solving timestep 026/100: 25 Years, 4 Hours, 1800.00 Seconds -> 26 Years, 4 Hours, 2448.00 Seconds
+Solving timestep 027/100: 26 Years, 4 Hours, 2448.00 Seconds -> 27 Years, 4 Hours, 3096.00 Seconds
+Solving timestep 028/100: 27 Years, 4 Hours, 3096.00 Seconds -> 28 Years, 5 Hours, 144.00 Seconds
+Solving timestep 029/100: 28 Years, 5 Hours, 144.00 Seconds -> 29 Years, 5 Hours, 792.00 Seconds
+Solving timestep 030/100: 29 Years, 5 Hours, 792.00 Seconds -> 30 Years, 5 Hours, 1440.00 Seconds
+Solving timestep 031/100: 30 Years, 5 Hours, 1440.00 Seconds -> 31 Years, 5 Hours, 2088.00 Seconds
+Solving timestep 032/100: 31 Years, 5 Hours, 2088.00 Seconds -> 32 Years, 5 Hours, 2736.00 Seconds
+Solving timestep 033/100: 32 Years, 5 Hours, 2736.00 Seconds -> 33 Years, 5 Hours, 3384.00 Seconds
+Solving timestep 034/100: 33 Years, 5 Hours, 3384.00 Seconds -> 34 Years, 6 Hours, 432.00 Seconds
+Solving timestep 035/100: 34 Years, 6 Hours, 432.00 Seconds -> 35 Years, 6 Hours, 1080.00 Seconds
+Solving timestep 036/100: 35 Years, 6 Hours, 1080.00 Seconds -> 36 Years, 6 Hours, 1728.00 Seconds
+Solving timestep 037/100: 36 Years, 6 Hours, 1728.00 Seconds -> 37 Years, 6 Hours, 2376.00 Seconds
+Solving timestep 038/100: 37 Years, 6 Hours, 2376.00 Seconds -> 38 Years, 6 Hours, 3024.00 Seconds
+Solving timestep 039/100: 38 Years, 6 Hours, 3024.00 Seconds -> 39 Years, 7 Hours, 72.00 Seconds
+Solving timestep 040/100: 39 Years, 7 Hours, 72.00 Seconds -> 40 Years, 7 Hours, 720.00 Seconds
+Solving timestep 041/100: 40 Years, 7 Hours, 720.00 Seconds -> 41 Years, 7 Hours, 1368.00 Seconds
+Solving timestep 042/100: 41 Years, 7 Hours, 1368.00 Seconds -> 42 Years, 7 Hours, 2016.00 Seconds
+Solving timestep 043/100: 42 Years, 7 Hours, 2016.00 Seconds -> 43 Years, 7 Hours, 2664.00 Seconds
+Solving timestep 044/100: 43 Years, 7 Hours, 2664.00 Seconds -> 44 Years, 7 Hours, 3312.00 Seconds
+Solving timestep 045/100: 44 Years, 7 Hours, 3312.00 Seconds -> 45 Years, 8 Hours, 360.00 Seconds
+Solving timestep 046/100: 45 Years, 8 Hours, 360.00 Seconds -> 46 Years, 8 Hours, 1008.00 Seconds
+Solving timestep 047/100: 46 Years, 8 Hours, 1008.00 Seconds -> 47 Years, 8 Hours, 1656.00 Seconds
+Solving timestep 048/100: 47 Years, 8 Hours, 1656.00 Seconds -> 48 Years, 8 Hours, 2304.00 Seconds
+Solving timestep 049/100: 48 Years, 8 Hours, 2304.00 Seconds -> 49 Years, 8 Hours, 2952.00 Seconds
+Solving timestep 050/100: 49 Years, 8 Hours, 2952.00 Seconds -> 50 Years, 9 Hours
+Solving timestep 051/100: 50 Years, 9 Hours              -> 55 Years, 9 Hours, 3240.00 Seconds
+Solving timestep 052/100: 55 Years, 9 Hours, 3240.00 Seconds -> 60 Years, 10 Hours, 2880.00 Seconds
+Solving timestep 053/100: 60 Years, 10 Hours, 2880.00 Seconds -> 65 Years, 11 Hours, 2520.00 Seconds
+Solving timestep 054/100: 65 Years, 11 Hours, 2520.00 Seconds -> 70 Years, 12 Hours, 2160.00 Seconds
+Solving timestep 055/100: 70 Years, 12 Hours, 2160.00 Seconds -> 75 Years, 13 Hours, 1800.00 Seconds
+Solving timestep 056/100: 75 Years, 13 Hours, 1800.00 Seconds -> 80 Years, 14 Hours, 1440.00 Seconds
+Solving timestep 057/100: 80 Years, 14 Hours, 1440.00 Seconds -> 85 Years, 15 Hours, 1080.00 Seconds
+Solving timestep 058/100: 85 Years, 15 Hours, 1080.00 Seconds -> 90 Years, 16 Hours, 720.00 Seconds
+Solving timestep 059/100: 90 Years, 16 Hours, 720.00 Seconds -> 95 Years, 17 Hours, 360.00 Seconds
+Solving timestep 060/100: 95 Years, 17 Hours, 360.00 Seconds -> 100 Years, 18 Hours
+Solving timestep 061/100: 100 Years, 18 Hours            -> 110 Years, 19 Hours, 2880.00 Seconds
+Solving timestep 062/100: 110 Years, 19 Hours, 2880.00 Seconds -> 120 Years, 21 Hours, 2160.00 Seconds
+Solving timestep 063/100: 120 Years, 21 Hours, 2160.00 Seconds -> 130 Years, 23 Hours, 1440.00 Seconds
+Solving timestep 064/100: 130 Years, 23 Hours, 1440.00 Seconds -> 140 Years, 1 Day, 1.20 Hour
+Solving timestep 065/100: 140 Years, 1 Day, 1.20 Hour    -> 150 Years, 1 Day, 3.00 Hours
+Solving timestep 066/100: 150 Years, 1 Day, 3.00 Hours   -> 160 Years, 1 Day, 4.80 Hours
+Solving timestep 067/100: 160 Years, 1 Day, 4.80 Hours   -> 170 Years, 1 Day, 6.60 Hours
+Solving timestep 068/100: 170 Years, 1 Day, 6.60 Hours   -> 180 Years, 1 Day, 8.40 Hours
+Solving timestep 069/100: 180 Years, 1 Day, 8.40 Hours   -> 190 Years, 1 Day, 10.20 Hours
+Solving timestep 070/100: 190 Years, 1 Day, 10.20 Hours  -> 200 Years, 1 Day, 12.00 Hours
+Solving timestep 071/100: 200 Years, 1 Day, 12.00 Hours  -> 210 Years, 1 Day, 13.80 Hours
+Solving timestep 072/100: 210 Years, 1 Day, 13.80 Hours  -> 220 Years, 1 Day, 15.60 Hours
+Solving timestep 073/100: 220 Years, 1 Day, 15.60 Hours  -> 230 Years, 1 Day, 17.40 Hours
+Solving timestep 074/100: 230 Years, 1 Day, 17.40 Hours  -> 240 Years, 1 Day, 19.20 Hours
+Solving timestep 075/100: 240 Years, 1 Day, 19.20 Hours  -> 250 Years, 1 Day, 21.00 Hours
+Solving timestep 076/100: 250 Years, 1 Day, 21.00 Hours  -> 260 Years, 1 Day, 22.80 Hours
+Solving timestep 077/100: 260 Years, 1 Day, 22.80 Hours  -> 270 Years, 2 Days, 2160.00 Seconds
+Solving timestep 078/100: 270 Years, 2 Days, 2160.00 Seconds -> 280 Years, 2 Days, 2.40 Hours
+Solving timestep 079/100: 280 Years, 2 Days, 2.40 Hours  -> 290 Years, 2 Days, 4.20 Hours
+Solving timestep 080/100: 290 Years, 2 Days, 4.20 Hours  -> 300 Years, 2 Days, 6.00 Hours
+Solving timestep 081/100: 300 Years, 2 Days, 6.00 Hours  -> 310 Years, 2 Days, 7.80 Hours
+Solving timestep 082/100: 310 Years, 2 Days, 7.80 Hours  -> 320 Years, 2 Days, 9.60 Hours
+Solving timestep 083/100: 320 Years, 2 Days, 9.60 Hours  -> 330 Years, 2 Days, 11.40 Hours
+Solving timestep 084/100: 330 Years, 2 Days, 11.40 Hours -> 340 Years, 2 Days, 13.20 Hours
+Solving timestep 085/100: 340 Years, 2 Days, 13.20 Hours -> 350 Years, 2 Days, 15.00 Hours
+Solving timestep 086/100: 350 Years, 2 Days, 15.00 Hours -> 360 Years, 2 Days, 16.80 Hours
+Solving timestep 087/100: 360 Years, 2 Days, 16.80 Hours -> 370 Years, 2 Days, 18.60 Hours
+Solving timestep 088/100: 370 Years, 2 Days, 18.60 Hours -> 380 Years, 2 Days, 20.40 Hours
+Solving timestep 089/100: 380 Years, 2 Days, 20.40 Hours -> 390 Years, 2 Days, 22.20 Hours
+Solving timestep 090/100: 390 Years, 2 Days, 22.20 Hours -> 400 Years, 3 Days
+Solving timestep 091/100: 400 Years, 3 Days              -> 410 Years, 3 Days, 1.80 Hour
+Solving timestep 092/100: 410 Years, 3 Days, 1.80 Hour   -> 420 Years, 3 Days, 3.60 Hours
+Solving timestep 093/100: 420 Years, 3 Days, 3.60 Hours  -> 430 Years, 3 Days, 5.40 Hours
+Solving timestep 094/100: 430 Years, 3 Days, 5.40 Hours  -> 440 Years, 3 Days, 7.20 Hours
+Solving timestep 095/100: 440 Years, 3 Days, 7.20 Hours  -> 450 Years, 3 Days, 9.00 Hours
+Solving timestep 096/100: 450 Years, 3 Days, 9.00 Hours  -> 460 Years, 3 Days, 10.80 Hours
+Solving timestep 097/100: 460 Years, 3 Days, 10.80 Hours -> 470 Years, 3 Days, 12.60 Hours
+Solving timestep 098/100: 470 Years, 3 Days, 12.60 Hours -> 480 Years, 3 Days, 14.40 Hours
+Solving timestep 099/100: 480 Years, 3 Days, 14.40 Hours -> 490 Years, 3 Days, 16.20 Hours
+Solving timestep 100/100: 490 Years, 3 Days, 16.20 Hours -> 500 Years, 3 Days, 18.00 Hours
+*** Simulation complete. Solved 100 control steps in 51 Seconds, 332 Milliseconds ***
+
+Simulation done in 51.4 s (100 steps)
+Results saved: punq_case2_hyst.mat | max Sg final = 0.641 | sum Sg>0.05: 138 cells

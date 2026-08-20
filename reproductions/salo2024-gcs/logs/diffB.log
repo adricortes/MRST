@@ -1,0 +1,140 @@
+Welcome to the MATLAB Reservoir Simulation Toolbox (MRST)!
+You are using the development version at commit 8aaf7d2a45b07455b131ed1f04b5c5e17a458d1a
+
+Useful commands for getting started:
+ - List all introductory examples:   mrstExamples()
+ - List all modules:                 mrstPath('list')
+ - Load modules using GUI:           mrstModule('gui')
+ - Explore all available data sets:  mrstDatasetGUI()
+ - List examples of a module:        mrstExamples('ad-blackoil')
+ - Explore modules and publications: mrstExploreModules()
+ - Show all examples in all modules: mrstExamples('all')
+ - Show settings for MRST:           mrstSettings()
+ - Display this message:             mrstStartupMessage()
+
+For assistance and discussions about MRST, please visit our mailing list at
+	www.sintef.no/projectweb/mrst/forum/ (sintef-mrst@googlegroups.com)
+For some common queries, see our FAQ: www.sintef.no/projectweb/mrst/faq/
+warning: isdir is obsolete; use isfolder or dir_in_loadpath instead
+warning: No relperm points found in assignment of SGOF.
+warning: called from
+    assignSGOF>getFunctions at line 17 column 13
+    assignSGOF at line 2 column 57
+    initDeckADIFluid at line 116 column 19
+    run_diffusion at line 47 column 7
+    run at line 93 column 5
+
+warning: No relperm points found in assignment of SGOF.
+warning: called from
+    assignSGOF>getFunctions at line 17 column 13
+    assignSGOF at line 2 column 57
+    initDeckADIFluid at line 116 column 19
+    run_diffusion at line 47 column 7
+    run at line 93 column 5
+
+warning: No relperm points found in assignment of SGOF.
+warning: called from
+    assignSGOF>getFunctions at line 17 column 13
+    assignSGOF at line 2 column 57
+    initDeckADIFluid at line 116 column 19
+    run_diffusion at line 47 column 7
+    run at line 93 column 5
+
+Solving timestep 01/69:         -> 720 Seconds
+Solving timestep 02/69: 720 Seconds -> 1440 Seconds
+Solving timestep 03/69: 1440 Seconds -> 2160 Seconds
+Solving timestep 04/69: 2160 Seconds -> 2880 Seconds
+Solving timestep 05/69: 2880 Seconds -> 1 Hour
+Solving timestep 06/69: 1 Hour  -> 2 Hours
+Solver did not converge in 10 iterations for timestep of length 1998 Seconds, 437 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 999 Seconds, 218 Milliseconds. Cutting timestep.
+Solving timestep 07/69: 2 Hours -> 3 Hours
+Solver did not converge in 10 iterations for timestep of length 753 Seconds, 720 Milliseconds. Cutting timestep.
+Solving timestep 08/69: 3 Hours -> 4 Hours
+Solving timestep 09/69: 4 Hours -> 5 Hours
+Solving timestep 10/69: 5 Hours -> 6 Hours
+Solver did not converge in 10 iterations for timestep of length 1358 Seconds, 442 Milliseconds. Cutting timestep.
+Solving timestep 11/69: 6 Hours -> 7 Hours
+Solver did not converge in 10 iterations for timestep of length 1085 Seconds, 968 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 1253 Seconds, 481 Milliseconds. Cutting timestep.
+Solving timestep 12/69: 7 Hours -> 8 Hours
+Solving timestep 13/69: 8 Hours -> 9 Hours
+Solving timestep 14/69: 9 Hours -> 10 Hours
+Solver did not converge in 10 iterations for timestep of length 2677 Seconds, 442 Milliseconds. Cutting timestep.
+Solving timestep 15/69: 10 Hours -> 11 Hours
+Solving timestep 16/69: 11 Hours -> 12 Hours
+Solver did not converge in 10 iterations for timestep of length 1276 Seconds, 889 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 638 Seconds, 444 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 518 Seconds, 736 Milliseconds. Cutting timestep.
+Solving timestep 17/69: 12 Hours -> 13 Hours
+Solving timestep 18/69: 13 Hours -> 14 Hours
+Solver did not converge in 10 iterations for timestep of length 1900 Seconds, 174 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 950 Seconds, 87 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 475 Seconds, 43 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 441 Seconds, 111 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 220 Seconds, 555 Milliseconds. Cutting timestep.
+Solving timestep 19/69: 14 Hours -> 15 Hours
+Solving timestep 20/69: 15 Hours -> 16 Hours
+Solving timestep 21/69: 16 Hours -> 17 Hours
+Solver did not converge in 10 iterations for timestep of length 1 Hour. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 1800 Seconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 900 Seconds. Cutting timestep.
+Solving timestep 22/69: 17 Hours -> 18 Hours
+Solving timestep 23/69: 18 Hours -> 19 Hours
+Solving timestep 24/69: 19 Hours -> 20 Hours
+Solver did not converge in 10 iterations for timestep of length 3337 Seconds, 529 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 1668 Seconds, 764 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 834 Seconds, 382 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 417 Seconds, 191 Milliseconds. Cutting timestep.
+Solving timestep 25/69: 20 Hours -> 21 Hours
+Solving timestep 26/69: 21 Hours -> 22 Hours
+Solving timestep 27/69: 22 Hours -> 23 Hours
+Solving timestep 28/69: 23 Hours -> 1 Day
+Solving timestep 29/69: 1 Day   -> 1 Day, 300 Seconds
+Solving timestep 30/69: 1 Day, 300 Seconds -> 1 Day, 600 Seconds
+Solving timestep 31/69: 1 Day, 600 Seconds -> 1 Day, 900 Seconds
+Solving timestep 32/69: 1 Day, 900 Seconds -> 1 Day, 1200 Seconds
+Solving timestep 33/69: 1 Day, 1200 Seconds -> 1 Day, 1500 Seconds
+Solving timestep 34/69: 1 Day, 1500 Seconds -> 1 Day, 1 Hour
+Solving timestep 35/69: 1 Day, 1 Hour -> 1 Day, 2 Hours
+Solving timestep 36/69: 1 Day, 2 Hours -> 1 Day, 4 Hours
+Solving timestep 37/69: 1 Day, 4 Hours -> 1 Day, 8 Hours
+Solving timestep 38/69: 1 Day, 8 Hours -> 1 Day, 12 Hours
+Solving timestep 39/69: 1 Day, 12 Hours -> 1 Day, 16 Hours
+Solving timestep 40/69: 1 Day, 16 Hours -> 2 Days
+Solving timestep 41/69: 2 Days  -> 2 Days, 12 Hours
+Solver did not converge in 10 iterations for timestep of length 7 Hours, 946 Seconds, 115 Milliseconds. Cutting timestep.
+Solving timestep 42/69: 2 Days, 12 Hours -> 3 Days
+Solving timestep 43/69: 3 Days  -> 4 Days
+Solving timestep 44/69: 4 Days  -> 5 Days
+Solver did not converge in 10 iterations for timestep of length 23 Hours, 619 Seconds, 36 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 11 Hours, 2109 Seconds, 518 Milliseconds. Cutting timestep.
+Solving timestep 45/69: 5 Days  -> 6 Days
+Solving timestep 46/69: 6 Days  -> 7 Days
+Solving timestep 47/69: 7 Days  -> 8 Days
+Solving timestep 48/69: 8 Days  -> 9 Days
+Solving timestep 49/69: 9 Days  -> 10 Days
+Solving timestep 50/69: 10 Days -> 11 Days
+Solving timestep 51/69: 11 Days -> 12 Days
+Solving timestep 52/69: 12 Days -> 13 Days
+Solving timestep 53/69: 13 Days -> 14 Days
+Solving timestep 54/69: 14 Days -> 15 Days
+Solving timestep 55/69: 15 Days -> 16 Days
+Solving timestep 56/69: 16 Days -> 17 Days
+Solving timestep 57/69: 17 Days -> 18 Days
+Solving timestep 58/69: 18 Days -> 19 Days
+Solving timestep 59/69: 19 Days -> 20 Days
+Solving timestep 60/69: 20 Days -> 21 Days
+Solving timestep 61/69: 21 Days -> 22 Days
+Solving timestep 62/69: 22 Days -> 23 Days
+Solving timestep 63/69: 23 Days -> 24 Days
+Solving timestep 64/69: 24 Days -> 25 Days
+Solving timestep 65/69: 25 Days -> 26 Days
+Solving timestep 66/69: 26 Days -> 27 Days
+Solving timestep 67/69: 27 Days -> 28 Days
+Solving timestep 68/69: 28 Days -> 29 Days
+Solving timestep 69/69: 29 Days -> 30 Days
+*** Simulation complete. Solved 69 control steps in 167 Seconds, 870 Milliseconds ***
+
+Simulation done in 167.9 s (69 steps)
+Saved diff_D0.mat | max rs final = 29.2150 | max sg final = 0.945

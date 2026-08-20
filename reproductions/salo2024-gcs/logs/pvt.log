@@ -1,0 +1,63 @@
+Welcome to the MATLAB Reservoir Simulation Toolbox (MRST)!
+You are using the development version at commit 8aaf7d2a45b07455b131ed1f04b5c5e17a458d1a
+
+Useful commands for getting started:
+ - List all introductory examples:   mrstExamples()
+ - List all modules:                 mrstPath('list')
+ - Load modules using GUI:           mrstModule('gui')
+ - Explore all available data sets:  mrstDatasetGUI()
+ - List examples of a module:        mrstExamples('ad-blackoil')
+ - Explore modules and publications: mrstExploreModules()
+ - Show all examples in all modules: mrstExamples('all')
+ - Show settings for MRST:           mrstSettings()
+ - Display this message:             mrstStartupMessage()
+
+For assistance and discussions about MRST, please visit our mailing list at
+	www.sintef.no/projectweb/mrst/forum/ (sintef-mrst@googlegroups.com)
+For some common queries, see our FAQ: www.sintef.no/projectweb/mrst/faq/
+warning: isdir is obsolete; use isfolder or dir_in_loadpath instead
+warning: No relperm points found in assignment of SGOF.
+warning: called from
+    assignSGOF>getFunctions at line 17 column 13
+    assignSGOF at line 2 column 57
+    initDeckADIFluid at line 116 column 19
+    run_pvt_props at line 22 column 7
+    run at line 93 column 5
+
+warning: No relperm points found in assignment of SGOF.
+warning: called from
+    assignSGOF>getFunctions at line 17 column 13
+    assignSGOF at line 2 column 57
+    initDeckADIFluid at line 116 column 19
+    run_pvt_props at line 22 column 7
+    run at line 93 column 5
+
+warning: No relperm points found in assignment of SGOF.
+warning: called from
+    assignSGOF>getFunctions at line 17 column 13
+    assignSGOF at line 2 column 57
+    initDeckADIFluid at line 116 column 19
+    run_pvt_props at line 22 column 7
+    run at line 93 column 5
+
+
+Surface densities from deck: brine 1068.89 kg/m3, CO2 1.8683 kg/m3
+Max rel. difference fluid object vs table:
+  CO2 density:            1.950e-16
+  CO2 viscosity:          2.171e-16
+  Sat. brine density:     2.177e-16
+  Sat. brine viscosity:   1.273e-16
+CO2 density at 100/300/600 bar [kg/m3]: 223.0 / 734.5 / 932.7
+Sat. brine density at 100/300/600 bar [kg/m3]: 1051.7 / 1060.1 / 1070.6
+warning: using the gnuplot graphics toolkit is discouraged
+
+The gnuplot graphics toolkit is not actively maintained and has a number
+of limitations that are unlikely to be fixed.  Communication with gnuplot
+uses a one-directional pipe and limited information is passed back to the
+Octave interpreter so most changes made interactively in the plot window
+will not be reflected in the graphics properties managed by Octave.  For
+example, if the plot window is closed with a mouse click, Octave will not
+be notified and will not update its internal list of open figure windows.
+The qt toolkit is recommended instead.
+
+Figure saved: fig_pvt_props.png

@@ -1,0 +1,24 @@
+Welcome to the MATLAB Reservoir Simulation Toolbox (MRST)!
+You are using the development version at commit 8aaf7d2a45b07455b131ed1f04b5c5e17a458d1a
+
+Useful commands for getting started:
+ - List all introductory examples:   mrstExamples()
+ - List all modules:                 mrstPath('list')
+ - Load modules using GUI:           mrstModule('gui')
+ - Explore all available data sets:  mrstDatasetGUI()
+ - List examples of a module:        mrstExamples('ad-blackoil')
+ - Explore modules and publications: mrstExploreModules()
+ - Show all examples in all modules: mrstExamples('all')
+ - Show settings for MRST:           mrstSettings()
+ - Display this message:             mrstStartupMessage()
+
+For assistance and discussions about MRST, please visit our mailing list at
+	www.sintef.no/projectweb/mrst/forum/ (sintef-mrst@googlegroups.com)
+For some common queries, see our FAQ: www.sintef.no/projectweb/mrst/faq/
+warning: isdir is obsolete; use isfolder or dir_in_loadpath instead
+Solving timestep 1/2:                       -> 1 Year, 648 Seconds
+Solving timestep 2/2: 1 Year, 648 Seconds   -> 2 Years, 1296 Seconds
+*** Simulation complete. Solved 2 control steps in 5 Seconds, 381 Milliseconds ***
+
+Simulation done in 5.4 s (2 steps)
+Results saved: punq_smoke.mat | max Sg final = 0.599 | sum Sg>0.05: 36 cells

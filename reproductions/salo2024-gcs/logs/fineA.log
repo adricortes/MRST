@@ -1,0 +1,1165 @@
+Welcome to the MATLAB Reservoir Simulation Toolbox (MRST)!
+You are using the development version at commit 8aaf7d2a45b07455b131ed1f04b5c5e17a458d1a
+
+Useful commands for getting started:
+ - List all introductory examples:   mrstExamples()
+ - List all modules:                 mrstPath('list')
+ - Load modules using GUI:           mrstModule('gui')
+ - Explore all available data sets:  mrstDatasetGUI()
+ - List examples of a module:        mrstExamples('ad-blackoil')
+ - Explore modules and publications: mrstExploreModules()
+ - Show all examples in all modules: mrstExamples('all')
+ - Show settings for MRST:           mrstSettings()
+ - Display this message:             mrstStartupMessage()
+
+For assistance and discussions about MRST, please visit our mailing list at
+	www.sintef.no/projectweb/mrst/forum/ (sintef-mrst@googlegroups.com)
+For some common queries, see our FAQ: www.sintef.no/projectweb/mrst/faq/
+warning: isdir is obsolete; use isfolder or dir_in_loadpath instead
+Generating fine mesh. This could take several minutes.
+Elapsed time is 1021.99 seconds.
+Mesh fine: 105279 cells, min volume 1.561e-08
+warning: No relperm points found in assignment of SGOF.
+warning: called from
+    assignSGOF>getFunctions at line 17 column 13
+    assignSGOF at line 2 column 57
+    initDeckADIFluid at line 116 column 19
+    run_diffusion at line 54 column 7
+    run at line 93 column 5
+
+warning: No relperm points found in assignment of SGOF.
+warning: called from
+    assignSGOF>getFunctions at line 17 column 13
+    assignSGOF at line 2 column 57
+    initDeckADIFluid at line 116 column 19
+    run_diffusion at line 54 column 7
+    run at line 93 column 5
+
+warning: No relperm points found in assignment of SGOF.
+warning: called from
+    assignSGOF>getFunctions at line 17 column 13
+    assignSGOF at line 2 column 57
+    initDeckADIFluid at line 116 column 19
+    run_diffusion at line 54 column 7
+    run at line 93 column 5
+
+Solving timestep 01/69:         -> 720 Seconds
+Solving timestep 02/69: 720 Seconds -> 1440 Seconds
+Solver did not converge in 10 iterations for timestep of length 515 Seconds, 47 Milliseconds. Cutting timestep.
+Solving timestep 03/69: 1440 Seconds -> 2160 Seconds
+Solver did not converge in 10 iterations for timestep of length 359 Seconds, 682 Milliseconds. Cutting timestep.
+Solving timestep 04/69: 2160 Seconds -> 2880 Seconds
+Solving timestep 05/69: 2880 Seconds -> 1 Hour
+Solving timestep 06/69: 1 Hour  -> 2 Hours
+Solver did not converge in 10 iterations for timestep of length 283 Seconds, 209 Milliseconds. Cutting timestep.
+Solving timestep 07/69: 2 Hours -> 3 Hours
+Solver did not converge in 10 iterations for timestep of length 326 Seconds, 917 Milliseconds. Cutting timestep.
+Solving timestep 08/69: 3 Hours -> 4 Hours
+Solver did not converge in 10 iterations for timestep of length 381 Seconds, 491 Milliseconds. Cutting timestep.
+Solving timestep 09/69: 4 Hours -> 5 Hours
+Solver did not converge in 10 iterations for timestep of length 383 Seconds, 514 Milliseconds. Cutting timestep.
+Solving timestep 10/69: 5 Hours -> 6 Hours
+Solving timestep 11/69: 6 Hours -> 7 Hours
+Solving timestep 12/69: 7 Hours -> 8 Hours
+Solving timestep 13/69: 8 Hours -> 9 Hours
+Solver did not converge in 10 iterations for timestep of length 839 Seconds, 252 Milliseconds. Cutting timestep.
+Solving timestep 14/69: 9 Hours -> 10 Hours
+Solver did not converge in 10 iterations for timestep of length 640 Seconds, 221 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 468 Seconds, 922 Milliseconds. Cutting timestep.
+Solving timestep 15/69: 10 Hours -> 11 Hours
+Solver did not converge in 10 iterations for timestep of length 596 Seconds, 280 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 298 Seconds, 140 Milliseconds. Cutting timestep.
+Solving timestep 16/69: 11 Hours -> 12 Hours
+Solver did not converge in 10 iterations for timestep of length 842 Seconds, 21 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 421 Seconds, 10 Milliseconds. Cutting timestep.
+Solving timestep 17/69: 12 Hours -> 13 Hours
+warning: matrix singular to machine precision, rcond = 7.39872e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 7.47587e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 5.48726e-17
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver did not converge in 10 iterations for timestep of length 927 Seconds, 3 Milliseconds. Cutting timestep.
+Solving timestep 18/69: 13 Hours -> 14 Hours
+warning: matrix singular to machine precision, rcond = 2.76464e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 2.64082e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 2.426e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 2.73131e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 2.73201e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 2.77313e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 2.64078e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 2.63989e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver did not converge in 10 iterations for timestep of length 749 Seconds, 244 Milliseconds. Cutting timestep.
+warning: matrix singular to machine precision, rcond = 1.25345e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 1.21122e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 1.27785e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 1.28895e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 1.22853e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 1.36059e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 1.58162e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 1.55573e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 1.54404e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 5.28828e-19
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solving timestep 19/69: 14 Hours -> 15 Hours
+warning: matrix singular to machine precision, rcond = 3.09931e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 1.35497e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 9.05398e-19
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver did not converge in 10 iterations for timestep of length 643 Seconds, 813 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 380 Seconds, 435 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 190 Seconds, 217 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 154 Seconds, 551 Milliseconds. Cutting timestep.
+Solving timestep 20/69: 15 Hours -> 16 Hours
+Solver did not converge in 10 iterations for timestep of length 908 Seconds, 675 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 984 Seconds, 243 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 602 Seconds, 438 Milliseconds. Cutting timestep.
+Solving timestep 21/69: 16 Hours -> 17 Hours
+Solving timestep 22/69: 17 Hours -> 18 Hours
+Solver did not converge in 10 iterations for timestep of length 840 Seconds, 579 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 496 Seconds, 706 Milliseconds. Cutting timestep.
+Solving timestep 23/69: 18 Hours -> 19 Hours
+warning: matrix singular to machine precision, rcond = 4.60282e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 9.38436e-19
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solving timestep 24/69: 19 Hours -> 20 Hours
+warning: matrix singular to machine precision, rcond = 2.6249e-17
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solving timestep 25/69: 20 Hours -> 21 Hours
+Solving timestep 26/69: 21 Hours -> 22 Hours
+warning: matrix singular to machine precision, rcond = 1.03505e-17
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 9.16377e-17
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver did not converge in 10 iterations for timestep of length 580 Seconds, 196 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 314 Seconds, 273 Milliseconds. Cutting timestep.
+Solving timestep 27/69: 22 Hours -> 23 Hours
+warning: matrix singular to machine precision, rcond = 5.01751e-17
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solving timestep 28/69: 23 Hours -> 1 Day
+warning: matrix singular to machine precision, rcond = 4.26137e-17
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 9.34111e-17
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+warning: matrix singular to machine precision, rcond = 5.17547e-18
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solving timestep 29/69: 1 Day   -> 1 Day, 300 Seconds
+Solving timestep 30/69: 1 Day, 300 Seconds -> 1 Day, 600 Seconds
+Solving timestep 31/69: 1 Day, 600 Seconds -> 1 Day, 900 Seconds
+Solving timestep 32/69: 1 Day, 900 Seconds -> 1 Day, 1200 Seconds
+Solving timestep 33/69: 1 Day, 1200 Seconds -> 1 Day, 1500 Seconds
+Solving timestep 34/69: 1 Day, 1500 Seconds -> 1 Day, 1 Hour
+Solving timestep 35/69: 1 Day, 1 Hour -> 1 Day, 2 Hours
+Solving timestep 36/69: 1 Day, 2 Hours -> 1 Day, 4 Hours
+Solving timestep 37/69: 1 Day, 4 Hours -> 1 Day, 8 Hours
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 1 Hour, 200 Seconds, 958 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 1900 Seconds, 479 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+Solving timestep 38/69: 1 Day, 8 Hours -> 1 Day, 12 Hours
+Solving timestep 39/69: 1 Day, 12 Hours -> 1 Day, 16 Hours
+Solving timestep 40/69: 1 Day, 16 Hours -> 2 Days
+Solving timestep 41/69: 2 Days  -> 2 Days, 12 Hours
+Solving timestep 42/69: 2 Days, 12 Hours -> 3 Days
+Solving timestep 43/69: 3 Days  -> 4 Days
+Solver did not converge in 10 iterations for timestep of length 12 Hours, 219 Seconds, 760 Milliseconds. Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 4 iterations for timestep of length 5 Hours, 815 Seconds, 229 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 3 Hours, 2788 Seconds, 776 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 1 Hour, 3194 Seconds, 388 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 3397 Seconds, 194 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 1698 Seconds, 597 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 3 iterations for timestep of length 1 Hour, 2020 Seconds, 70 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 2810 Seconds, 35 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 1405 Seconds, 17 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+Solving timestep 44/69: 4 Days  -> 5 Days
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 3 iterations for timestep of length 5 Hours, 2701 Seconds, 317 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 4 Hours, 1391 Seconds, 942 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 2 Hours, 695 Seconds, 971 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 1 Hour, 347 Seconds, 985 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+Solving timestep 45/69: 5 Days  -> 6 Days
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 3 iterations for timestep of length 10 Hours, 865 Seconds, 888 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+Solving timestep 46/69: 6 Days  -> 7 Days
+Solving timestep 47/69: 7 Days  -> 8 Days
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 1 Day. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 12 Hours. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 6 Hours. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 4 Hours, 3150 Seconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 2 Hours, 1575 Seconds. Cutting timestep.
+Solving timestep 48/69: 8 Days  -> 9 Days
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 5 iterations for timestep of length 14 Hours, 2821 Seconds, 130 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 7 Hours, 1410 Seconds, 565 Milliseconds. Cutting timestep.
+Solving timestep 49/69: 9 Days  -> 10 Days
+Solver did not converge in 10 iterations for timestep of length 8 Hours, 2430 Seconds, 455 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 7 Hours, 174 Seconds, 744 Milliseconds. Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 4 iterations for timestep of length 9 Hours, 2442 Seconds, 696 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+Solving timestep 50/69: 10 Days -> 11 Days
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 13 Hours, 3528 Seconds, 339 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+Solving timestep 51/69: 11 Days -> 12 Days
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 5 iterations for timestep of length 15 Hours, 898 Seconds, 187 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 7 Hours, 2249 Seconds, 93 Milliseconds. Cutting timestep.
+Solving timestep 52/69: 12 Days -> 13 Days
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 9 Hours, 1103 Seconds, 143 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 12 Hours, 354 Seconds, 87 Milliseconds. Cutting timestep.
+Solving timestep 53/69: 13 Days -> 14 Days
+Solving timestep 54/69: 14 Days -> 15 Days
+Solver did not converge in 10 iterations for timestep of length 10 Hours, 242 Seconds, 553 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 12 Hours, 1521 Seconds, 63 Milliseconds. Cutting timestep.
+Solving timestep 55/69: 15 Days -> 16 Days
+Solver did not converge in 10 iterations for timestep of length 8 Hours, 3498 Seconds, 546 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 4 Hours, 1749 Seconds, 273 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 3 Hours, 2321 Seconds, 284 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 2 Hours, 3461 Seconds, 43 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 1 Hour, 1730 Seconds, 521 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 2665 Seconds, 260 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 2665 Seconds, 260 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 2474 Seconds, 885 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 8 Hours, 1075 Seconds, 398 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 4 Hours, 537 Seconds, 699 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 2 Hours, 268 Seconds, 849 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 1 Hour, 3335 Seconds, 360 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 3467 Seconds, 680 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 1733 Seconds, 840 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 1733 Seconds, 840 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 1733 Seconds, 840 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 1733 Seconds, 840 Milliseconds. Cutting timestep.
+Solving timestep 56/69: 16 Days -> 17 Days
+Solver did not converge in 10 iterations for timestep of length 9 Hours, 1611 Seconds, 131 Milliseconds. Cutting timestep.
+Solving timestep 57/69: 17 Days -> 18 Days
+Solver did not converge in 10 iterations for timestep of length 1 Hour, 423 Seconds, 389 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 2011 Seconds, 694 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 1868 Seconds, 2 Milliseconds. Cutting timestep.
+Solving timestep 58/69: 18 Days -> 19 Days
+Solver did not converge in 10 iterations for timestep of length 7 Hours, 238 Seconds, 24 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 5 Hours, 2668 Seconds, 394 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 4 Hours, 527 Seconds, 173 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 2 Hours, 263 Seconds, 586 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 1 Hour, 131 Seconds, 793 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 3032 Seconds, 82 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 2815 Seconds, 504 Milliseconds. Cutting timestep.
+Solving timestep 59/69: 19 Days -> 20 Days
+Solver did not converge in 10 iterations for timestep of length 3 Hours, 3007 Seconds, 286 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 2 Hours, 2771 Seconds, 929 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 1 Hour, 1385 Seconds, 964 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 2160 Seconds, 584 Milliseconds. Cutting timestep.
+Solving timestep 60/69: 20 Days -> 21 Days
+Solver did not converge in 10 iterations for timestep of length 14 Hours, 2150 Seconds, 916 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 7 Hours, 1075 Seconds, 458 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 3 Hours, 2337 Seconds, 729 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 1 Hour, 2968 Seconds, 864 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 1 Hour, 2499 Seconds, 659 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 3049 Seconds, 829 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 3049 Seconds, 829 Milliseconds. Cutting timestep.
+Solving timestep 61/69: 21 Days -> 22 Days
+Solving timestep 62/69: 22 Days -> 23 Days
+Solver did not converge in 10 iterations for timestep of length 16 Hours, 2664 Seconds, 979 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 8 Hours, 1332 Seconds, 489 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 4 Hours, 666 Seconds, 244 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 3 Hours, 81 Seconds, 176 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 2 Hours, 2903 Seconds, 949 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 1 Hour, 1451 Seconds, 974 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 1 Hour, 1091 Seconds, 119 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 1 Hour, 756 Seconds, 39 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 1 Hour, 1689 Seconds, 661 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 2292 Seconds, 186 Milliseconds. Cutting timestep.
+Solving timestep 63/69: 23 Days -> 24 Days
+Solving timestep 64/69: 24 Days -> 25 Days
+Solver did not converge in 10 iterations for timestep of length 19 Hours, 1681 Seconds, 415 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 9 Hours, 2640 Seconds, 707 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 4 Hours, 3120 Seconds, 353 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 2 Hours, 392 Seconds, 153 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 1 Hour, 3449 Seconds, 856 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 1 Hour, 2128 Seconds, 8 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 2482 Seconds, 137 Milliseconds. Cutting timestep.
+Solver did not converge in 10 iterations for timestep of length 2482 Seconds, 137 Milliseconds. Cutting timestep.
+Solving timestep 65/69: 25 Days -> 26 Days
+Solver did not converge in 10 iterations for timestep of length 14 Hours, 2425 Seconds, 403 Milliseconds. Cutting timestep.
+Solving timestep 66/69: 26 Days -> 27 Days
+Solving timestep 67/69: 27 Days -> 28 Days
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 5 iterations for timestep of length 17 Hours, 3276 Seconds, 339 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 10 Hours, 2099 Seconds, 654 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 5 Hours, 1049 Seconds, 827 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 3 iterations for timestep of length 6 Hours, 3164 Seconds, 775 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 4 iterations for timestep of length 3 Hours, 1582 Seconds, 387 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 2 Hours, 2860 Seconds, 690 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+Solving timestep 68/69: 28 Days -> 29 Days
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 3 iterations for timestep of length 3 Hours, 1007 Seconds, 337 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 3 iterations for timestep of length 1 Hour, 2303 Seconds, 668 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 1 Hour, 1196 Seconds, 730 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 2398 Seconds, 365 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 3 iterations for timestep of length 6 Hours, 1923 Seconds, 254 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 3 iterations for timestep of length 3 Hours, 961 Seconds, 627 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 1 Hour, 3350 Seconds, 52 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 3475 Seconds, 26 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 1737 Seconds, 513 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+warning: matrix singular to machine precision
+warning: called from
+    solveLinearSystem at line 21 column 19
+    solveLinearProblem at line 361 column 30
+    stepFunction at line 739 column 39
+    stepFunction at line 307 column 25
+    solveMinistep at line 373 column 37
+    solveTimestep at line 209 column 39
+    simulateScheduleAD at line 295 column 29
+    run_diffusion at line 147 column 28
+    run at line 93 column 5
+
+Solver failure after 2 iterations for timestep of length 3 Hours, 132 Seconds, 146 Milliseconds. Cutting timestep.
+Failure reason: Linear solver produced non-finite values.
+Cutting timestep.
+Solving timestep 69/69: 29 Days -> 30 Days
+*** Simulation complete. Solved 69 control steps in 2750 Seconds, 887 Milliseconds ***
+
+Simulation done in 2751.0 s (69 steps)
+Saved diff_fine_D2e11.mat | max rs final = 29.2451 | max sg final = 0.950
