@@ -516,10 +516,40 @@ function mpfastruct = computeMultiPointTransNeumannTA(G, rock, varargin)
    
    F = S*F;
 
-   mpfastruct = struct('div' , div , ...
-                       'F'   , F   , ...
-                       'A'   , A   , ...
-                       'tbls', tbls);
-   
+   %% Assemble the gravity operator: from a potential difference given per
+   % face (e.g. rho*g*(z2 - z1), the same generic per-face quantity AD-OO's
+   % GravityPotentialDifference/TPFA both use), compute the corresponding
+   % flux contribution at every internal face. This mirrors how a cell
+   % pressure difference propagates through the node-block inverse iB above
+   % (F = S*iB*div'): a face's potential value is broadcast, unsigned, to
+   % every facenode continuity point on that face (Sint = S restricted to
+   % internal-face rows plays the broadcast role here, the same way S plays
+   % the collection role for F), run through the identical local system
+   % inverse iB used for the pressure term, then re-collected per face
+   % (Sint'). Matches the legacy assembly's rTrans/rgTrans/N field names and
+   % shapes so that setMPFADiscretization works unmodified on this struct.
+   isIntFace = ~extfaces;
+   Sint      = S(isIntFace, :);
+   rTrans    = F(isIntFace, :);
+   rgTrans          = sparse(nf, nnz(isIntFace));
+   % Factor 2: setMPFADiscretization.m normalizes the pressure operator by
+   % `scale = -1/(2*T)` and the gravity operator by `scale/2`, so a gravity
+   % operator built the same way as the pressure one (Tv) needs to come out
+   % twice as large to end up with equal weight after that normalization.
+   % Confirmed empirically: without this factor, a reservoir in exact
+   % hydrostatic equilibrium (uniform density, no wells/bc) shows a spurious
+   % O(1e4 Pa) potential imbalance on a small Cartesian test grid; with it,
+   % the imbalance drops to ~1e-10 Pa (machine precision).
+   rgTrans(isIntFace, :) = 2*(Sint*iB*Sint');
+   N = G.faces.neighbors(isIntFace, :);
+
+   mpfastruct = struct('div'    , div    , ...
+                       'F'      , F      , ...
+                       'A'      , A      , ...
+                       'tbls'   , tbls   , ...
+                       'rTrans' , rTrans , ...
+                       'rgTrans', rgTrans, ...
+                       'N'      , N);
+
 end
 

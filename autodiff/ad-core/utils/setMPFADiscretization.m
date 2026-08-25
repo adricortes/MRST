@@ -53,8 +53,13 @@ function model = setMPFA(model, varargin)
     % definition of gradient.
     T = getFaceTransmissibility(model.G, model.rock);
     scale = -1./(2*T(model.operators.internalConn));
-    MPFAGrad = bsxfun(@times, Tv, scale);
-    Mg = -bsxfun(@times, Tg, scale/2);
+    % sparse(...) guards against Octave's bsxfun silently densifying a
+    % sparse matrix broadcast against a dense vector (confirmed on Octave
+    % 8.4: Tv/Tg are sparse going in, MPFAGrad/Mg come out full without
+    % this). A dense multi-point stencil operator here corrupts memory
+    % inside ADI's sparse-optimized matrix ops during simulateScheduleAD.
+    MPFAGrad = sparse(bsxfun(@times, Tv, scale));
+    Mg = sparse(-bsxfun(@times, Tg, scale/2));
     assert(all(M.N(:) == model.operators.N(:)), ...
         'Operator neighborship does not match MPFA neighborship. NNC?');
     if isempty(model.FlowDiscretization)
