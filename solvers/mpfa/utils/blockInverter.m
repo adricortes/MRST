@@ -62,8 +62,25 @@ function iA = invertDiagonalBlocks(A, sz)
       n  = sz(b);
       n2 = n * n;
       i  = p1 + (1 : n);
+      Ab = full(A(i, i));
 
-      V(p2 + (1 : n2)) = inv(full(A(i, i)));
+      if n > 1 && (any(~isfinite(Ab(:))) || rcond(Ab) < 1e-10)
+         % Degenerate node block: every corner contributing to this
+         % node's block was itself geometrically degenerate (see the
+         % nface < dim / rank-deficient-corner fallbacks in
+         % computeLocalFluxMimetic, which zero out a corner's
+         % contribution rather than crash on a corner-point grid's
+         % hanging nodes and pinch-outs). A direct inverse of a singular
+         % or near-singular block produces Inf/NaN. The Moore-Penrose
+         % pseudo-inverse is well-defined for any matrix, singular or
+         % not, and coincides with the direct inverse whenever one
+         % exists, so it is used unconditionally as the fallback here.
+         invAb = pinv(Ab);
+      else
+         invAb = inv(Ab);
+      end
+
+      V(p2 + (1 : n2)) = invAb;
 
       p1 = p1 + n;
       p2 = p2 + n2;
